@@ -1,0 +1,72 @@
+@layer tokens {
+  :root {
+    color-scheme: dark;
+
+    --color-black-0: #000000;
+    --color-black-1: #080808;
+    --color-white: #ffffff;
+    --color-steel-200: #c3cddd;
+    --color-gray-400: #808187;
+    --color-orange-500: #fa4616;
+
+    --color-bg: var(--color-black-0);
+    --color-text: var(--color-white);
+    --color-text-body: var(--color-steel-200);
+    --color-text-meta: var(--color-gray-400);
+    --color-accent: var(--color-orange-500);
+    --color-focus: var(--color-white);
+
+    --font-ko: "Malgun Gothic", "Noto Sans KR", Arial, sans-serif; /* TODO(owner): confirm font */
+    --font-en: Arial, sans-serif; /* TODO(owner): confirm font */
+
+    --fs-body: 1rem;
+    --fs-brand: clamp(2.5rem, 3vw, 3.75rem); /* TODO(owner): confirm header type scale */
+    --fs-brand-sub: clamp(0.625rem, 0.65vw, 0.75rem); /* TODO(owner): confirm */
+    --fs-nav: clamp(0.625rem, 0.6vw, 0.75rem); /* TODO(owner): confirm */
+    --fs-hero-side: 1.4375rem;
+
+    --inner-max: 120rem;
+    --inner-pad-x: 5%;
+    --hero-h: 100vh;
+    --hero-h: 100dvh;
+    --hero-pad-block: 0;
+    --body-min-inline: 20rem;
+    --viewport-min-block: 100vh;
+    --viewport-min-block: 100dvh;
+    --line-body: 1.5;
+    --line-brand: 0.9; /* TODO(owner): confirm */
+    --line-brand-sub: 1.15; /* TODO(owner): confirm */
+    --focus-outline: 2px;
+    --focus-outline-offset: 2px;
+    --visually-hidden-size: 1px;
+    --visually-hidden-offset: -1px;
+    --visually-hidden-clip: 50%;
+    --radius-icon: 50%;
+    --icon-angle: 45deg;
+    --part-gap: 1.25rem;
+    --header-pad-block: 1rem; /* TODO(owner): header measurements unavailable */
+    --header-gap: clamp(1rem, 2vw, 2.25rem); /* TODO(owner): confirm */
+    --brand-gap: 1.25rem; /* TODO(owner): confirm */
+    --nav-gap: clamp(1.25rem, 2.4vw, 2.25rem); /* TODO(owner): confirm */
+    --skip-link-pad-block: 0.5rem;
+    --skip-link-pad-inline: 1rem;
+    --skip-link-offset: -100%;
+    --icon-size: 1rem;
+    --icon-stroke: 2px;
+    --icon-handle-size: 0.375rem;
+    --icon-handle-offset: 0.625rem;
+
+    --z-base: 0;
+    --z-header: 10;
+    --z-skip-link: 20;
+
+    --duration-fast: 150ms;
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  @media (min-width: 813px) {
+    :root {
+      --inner-pad-x: 2.25rem;
+    }
+  }
+}
