@@ -99,7 +99,7 @@
 ### A3.2 규칙
 - **MUST** 본문 텍스트 대비 ≥ 4.5:1, 큰 텍스트(24px 이상 또는 18.66px bold 이상) ≥ 3:1, UI 컴포넌트 경계/아이콘 ≥ 3:1.
 - **MUST** 색상만으로 상태를 전달하지 않는다. (오류 = 빨강 + 아이콘 + 텍스트)
-- *(이 프로젝트는 다크 전용 — PART S5.1.)* **MUST** 다크 모드를 지원하기로 했다면 Semantic 토큰만 교체하여 구현한다. 컴포넌트별 다크 오버라이드를 만들지 않는다.
+- **MUST** 다크 모드를 지원하기로 했다면 Semantic 토큰만 교체하여 구현한다. 컴포넌트별 다크 오버라이드를 만들지 않는다.
 - **SHOULD** 색상 역할은 60-30-10 비율(배경/서피스 60, 보조 30, 강조 10)을 기준으로 배분한다.
 - **SHOULD** 중립색은 브랜드 색조를 약하게 섞어 조화를 만든다. 순수 회색 계열을 그대로 쓰지 않는다.
 - **MUST NOT** 의미 없는 그라디언트를 장식으로 쓰지 않는다.
@@ -107,13 +107,17 @@
 
 ## A4. 타이포그래피
 
-- **서체는 1~2개 패밀리.** 2개를 쓸 때는 서로 뚜렷하게 다른 성격(예: 세리프 + 산세리프)이어야 한다. 비슷한 둘을 섞지 않는다.
+- **서체는 영어와 한국어 공통으로 'Pretendard'**를 기본 서체로 적용한다. 웹폰트 연동 시 아래 경로를 import하여 사용한다.
+  `@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");`
 - 서체는 습관적 기본값이 아니라 **프로젝트 성격에 맞게 의도적으로 선택**한다.
-- 한글 사이트는 한글 가독성이 검증된 서체(예: Pretendard, Noto Sans KR, Noto Serif KR 등)를 기본 후보로 하고, 라틴 서체와의 **조합 균형**(x-height, 굵기)을 확인한다.
 - 타입 스케일은 **고정 비율 스케일**로 정의한다. (예: Major Third 1.25, Perfect Fourth 1.333)
 
 ```css
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
 :root {
+  --font-family-base: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  
   --font-size-xs:   clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);
   --font-size-sm:   clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
   --font-size-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
@@ -128,7 +132,7 @@
 |---|---|
 | 본문 크기 | 최소 16px (1rem). 모바일에서도 16px 미만 금지. |
 | 줄 길이 | 본문 한글 기준 **영문 45~75자 / 한글 28~45자** 내외, 최대 `max-width: 65ch` 수준. 80자 초과 금지. |
-| 행간 | 본문 한글 1.6~1.8, 영문 산세리프 1.5~1.6, 세리프는 산세리프보다 약간 더 크게. 헤딩 1.1~1.3. |
+| 행간 | 본문 한글 1.6~1.8, 영문 1.5~1.6. 헤딩 1.1~1.3. |
 | 자간 | 한글 본문 `letter-spacing: -0.01em ~ 0`, 대형 헤딩은 약간 좁게 허용. 소문자 본문에 넓은 자간 금지. |
 | 굵기 | 사용하는 weight는 **최대 3~4개**(예: 400/500/700). 가변 폰트는 필요한 축만 사용. |
 | 줄바꿈 | 한글은 `word-break: keep-all; overflow-wrap: break-word;` 를 기본으로 한다. |
@@ -361,7 +365,7 @@
   <link rel="canonical" href="https://example.com/">
   <meta name="theme-color" content="#...">
   <!-- OG / Twitter 메타 -->
-  <link rel="preload" href="/assets/fonts/xxx.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
   <link rel="stylesheet" href="/css/main.css">
   <script type="module" src="/js/main.js"></script>
 </head>
@@ -442,20 +446,26 @@
 
 ### B4.2 토큰 정의 예시
 ```css
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
 @layer tokens {
   :root {
     color-scheme: light dark;
 
+    /* Font Tokens */
+    --font-family-base: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+
     /* Primitive */
-    --color-neutral-0:  #ffffff;
-    --color-neutral-900:#1a1a1f;
-    /* … */
+    --color-bg-base:    #F4F5FB;
+    --color-text-main:  #1B1B1C;
+    --color-brand-primary: #0A28FF;
+    --color-brand-orange: #FA4616;
 
     /* Semantic */
-    --color-bg:        var(--color-neutral-0);
-    --color-text:      var(--color-neutral-900);
-    --color-accent:    /* 프로젝트 팔레트 */;
-    --color-focus:     /* 대비 3:1 이상 */;
+    --color-bg:        var(--color-bg-base);
+    --color-text:      var(--color-text-main);
+    --color-accent:    var(--color-brand-primary);
+    --color-focus:     var(--color-brand-primary);
 
     /* Layers (z-index) */
     --z-base: 0;
@@ -467,9 +477,9 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { /* semantic 토큰만 재정의 */ }
+    :root:not([data-theme="light"]) { /* semantic 토큰 재정의 필요 시 구현 */ }
   }
-  :root[data-theme="dark"] { /* semantic 토큰만 재정의 */ }
+  :root[data-theme="dark"] { /* semantic 토큰 재정의 필요 시 구현 */ }
 }
 ```
 
@@ -720,7 +730,7 @@ export async function fetchJson(url, { signal } = {}) {
 - [ ] CSS에 raw 색/간격/폰트 값이 없다. (전부 토큰)
 - [ ] `!important`, 인라인 스타일, ID 선택자, 인라인 이벤트가 없다.
 - [ ] 키보드만으로 전 기능이 동작하고 포커스가 항상 보인다.
-- [ ] `prefers-reduced-motion`, 다크 모드(해당 시)를 지원한다.
+- [ ] `prefers-reduced-motion`을 지원한다.
 - [ ] 320px ~ 1920px에서 가로 스크롤/깨짐이 없다.
 - [ ] 이미지에 `alt`, `width/height`, 적절한 `loading`/`srcset`이 있다.
 - [ ] JS에 전역 오염, 미처리 에러, 누수(리스너/타이머)가 없다.
@@ -762,7 +772,7 @@ export async function fetchJson(url, { signal } = {}) {
 ## S1. 타겟 사이트 구조 분석 `[확정]`
 
 > 출처: 오너가 제공한 `index` HTML 원본 + `index_pc.css` / `index_tablet.css` / `index_mobile.css` (+ 웹 수집 텍스트).
-> **미제공**: `common.css`는 **0바이트(빈 파일)** 로 전달되었다. 따라서 **본문(body) 기본값, 서체(font-family), 헤더·푸터·GNB·전체메뉴·검색 패널의 스타일은 아직 알 수 없다.** 이 영역은 계속 `[추출 필요]`다. (S7)
+> **미제공**: `common.css`는 **0바이트(빈 파일)** 로 전달되었다. 헤더·푸터·GNB·전체메뉴·검색 패널의 상세 수치 및 기본 스타일은 개발 과정에서 정의 및 추출한다. (S7)
 > `swiper.min.css`는 라이브러리 CSS이며 **홈 HTML에 Swiper 마크업이 없다.** 이 프로젝트에 가져오지 않는다.
 
 ### S1.1 사이트 개요
@@ -770,7 +780,8 @@ export async function fetchJson(url, { signal } = {}) {
 - 페이지: `HOME`, `PROJECTS`(하위: All / Product / Mobility / Spatial / Interaction), `MAGAZINE`, `EXHIBITION`, `INDEX`, `ARCHIVE`
 - 언어: **한국어 + 영어 병기**
 - 뷰포트 메타: `width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes` (확대 허용 — Part B3.1과 일치)
-- **다크 전용 사이트**다. 모든 섹션 배경이 검정 계열이다. (S5)
+- 서체: **Pretendard (영어, 한국어 공통)**
+- 색상 체계: **다크 모드로 한정하지 않으며**, 기본 배경은 밝은 회색(`#F4F5FB`), 기본 텍스트는 `#1B1B1C`, 포인트 컬러는 `#0A28FF`를 사용한다. (주황색 포인트 색상 관련 규칙은 기존 사양 유지)
 
 ### S1.2 원본 DOM 구조 (참고용 — 우리는 이 구조를 따르지 않는다)
 
@@ -800,10 +811,10 @@ export async function fetchJson(url, { signal } = {}) {
 | **커버 리빌** | `.visual`이 `position: fixed; 100vh`로 뒤에 깔리고, `#contents`가 `padding-top: 100vh`로 그 위를 덮으며 올라온다 |
 | 스크롤 안내 | 아이콘이 `translateY(0 → 5px)`를 1s `infinite alternate`로 반복 (PC에서만 표시) |
 | 텍스트 등장 | 소개/브랜딩 텍스트가 `opacity: 0` + `translateY(40px)`(제목은 `translateX(40px)`, 브랜딩 `h4`는 `scale(.5)`)에서 시작 → JS(GSAP ScrollTrigger)가 등장시킴 |
-| `Enter` 호버 | 색이 `#FA4616`으로 바뀌고 `→`가 아래에서 슬라이드 인 (0.4s) |
-| GNB 호버 | 링크가 `translate(0.3rem, -0.4rem)` 이동 + 흰색 |
-| 프로젝트 카드 호버 | 파란 그라디언트 막이 아래→위로 올라오고, `info`(+0.3s 지연)와 `name`(+0.4s 지연)이 차례로 나타남 |
-| Enter 버튼 호버 | `#de3b29` → `#005ada` 순서로 좌→우 채움 (0.4s, 두 번째는 0.15s 지연), PC에서만 |
+| `Enter` 호버 | 색이 `#FA4616`(주황 포인트 유지 영역)으로 바뀌고 `→`가 아래에서 슬라이드 인 (0.4s) |
+| GNB 호버 | 링크가 `translate(0.3rem, -0.4rem)` 이동 + 강조 색상 변환 |
+| 프로젝트 카드 호버 | 블루 포인트 그라디언트 막이 아래→위로 올라오고, `info`(+0.3s 지연)와 `name`(+0.4s 지연)이 차례로 나타남 |
+| Enter 버튼 호버 | `#de3b29` → `#0A28FF` 순서로 좌→우 채움 (0.4s, 두 번째는 0.15s 지연), PC에서만 |
 | 영상 | 히어로 영상은 `autoplay muted playsinline`, 모바일은 영상을 숨기고 정지 이미지(`mobile_mainVisual.jpg`) 사용. 전시 영상은 `loop` 포함 |
 
 ### S1.4 반응형 구간 `[확정]`
@@ -1028,8 +1039,8 @@ export async function fetchJson(url, { signal } = {}) {
 
 ### S3.5 반경 · 선 · 그림자 `[확정]`
 - 반경: **`50px`(알약형 버튼)만** 사용. 그 외 모든 박스는 **0**. → `--radius-pill: 50px` 하나만 정의하고 `--radius-sm/md/lg`는 만들지 않는다. (Part A5.4의 3단계 반경 규칙을 이 프로젝트에서는 **적용하지 않는다**)
-- 테두리: 원본에 없음. 박스 구분은 **색(검정 계열 간 미세 차이)과 여백**으로만 한다.
-- 그림자: 박스 그림자 없음. 예외로 브랜딩 EN 문단에 `text-shadow: 1px 1px 2px rgba(255,255,255,.1)`가 있다(≤1560px, 선택 사항).
+- 테두리: 원본에 없음. 박스 구분은 **색과 여백**으로만 한다.
+- 그림자: 박스 그림자 없음. 예외로 브랜딩 EN 문단에 `text-shadow`가 있을 수 있다(≤1560px, 선택 사항).
 - `z-index` 사용: `10`(장식 레이어), `100`(텍스트·버튼 오버레이). → `--z-deco: 10; --z-overlay-text: 100;` Part B4.2의 `z-index` 토큰 체계 안에 **병합**한다.
 
 ### S3.6 아직 미확정 `[main.css 개발]` (common.css 대응 영역)
@@ -1038,6 +1049,7 @@ export async function fetchJson(url, { signal } = {}) {
 ## S4. 글자 관련 규칙
 
 ### S4.1 확인된 사실 `[확정]`
+- **서체는 영어와 한국어 공통으로 'Pretendard'를 적용**한다.
 - **영문 라벨·내비게이션은 대문자 표기**: `PROJECTS`, `MAGAZINE`, `EXHIBITION`, `INDEX`, `ARCHIVE`, 해시태그(`#AUTOMOTIVE INTERIOR` 등).
 - **제목/라벨 영문은 Title Case**: `Offline Exhibition`, `Branding Identity`, `Projects`, `Scroll down`.
 - **본문은 한국어, 이어서 영어를 병기**한다.
@@ -1056,7 +1068,7 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 | 섹션 제목, 본문, 연락처 라벨 | 원본 표기(Title Case) 유지. 임의로 대문자 변환하지 않는다 |
 | 자간이 넓은 소형 대문자 아이브로(제목 위 장식 라벨) | **여전히 금지** — 타겟 사이트에 없는 장식이다 |
 
-### S4.3 타입 토큰 `[확정]` (본문·섹션 영역) / `[추출 필요]` (서체·헤더·푸터)
+### S4.3 타입 토큰 `[확정]` (본문·섹션 영역)
 
 | 토큰 | 역할 | Mobile | Tablet | PC | 굵기 | 행간 | 색 |
 |---|---|---|---|---|---|---|---|
@@ -1080,12 +1092,12 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 
 | 항목 | 값 | 등급 |
 |---|---|---|
-| `--font-ko`, `--font-en` | **서체 불명** (`common.css` 미제공) | `[main.css 개발]` — 오너가 서체를 지정하기 전에는 시스템 폰트 스택을 임시 사용하고 TODO 표시 |
-| 헤더 GNB / 검색 / 전체메뉴 / 푸터 글자 크기·행간·자간 | `common.css` 미제공 | `[main.css 개발]` — 본문 영역 타입 스케일(S4.3)에서 고른다. 새 크기를 만들면 토큰 추가 + 결정 기록 |
-| 사용 weight | **500, 700** 두 가지만 확인됨. 이 프로젝트는 **500 / 700** 두 개로 제한한다 | 확정 |
-| 행간 | 원본은 `em`(1.3em/1.5em/1.8em) → 우리는 **단위 없는 숫자**(1.3 / 1.5 / 1.8)로 변환 | 확정 |
-| 자간 | 원본 CSS에 `letter-spacing` 선언 없음 → `normal` | 확정 |
-| 텍스트 정렬 | 슬로건·섹션 제목·브랜딩·카드 정보: **중앙**. 소개 본문(KO/EN)은 **PC에서 좌측, Tablet·Mobile에서 중앙** (원본: PC `.txts{text-align:left}`, 그 외 `.txtWrap{text-align:center}`) | 확정 |
+| `--font-ko`, `--font-en` | `"Pretendard Variable", Pretendard, sans-serif` | **[확정]** |
+| 헤더 GNB / 검색 / 전체메뉴 / 푸터 글자 크기·행간·자간 | 본문 타입 스케일 적용 | `[main.css 개발]` |
+| 사용 weight | **500, 700** 두 가지만 사용 | 확정 |
+| 행간 | **단위 없는 숫자**(1.3 / 1.5 / 1.8) 사용 | 확정 |
+| 자간 | `normal` 선언 | 확정 |
+| 텍스트 정렬 | 슬로건·섹션 제목·브랜딩·카드 정보: **중앙**. 소개 본문(KO/EN)은 **PC에서 좌측, Tablet·Mobile에서 중앙** | 확정 |
 
 ### S4.4 구현 규칙 `[확정]`
 
@@ -1100,7 +1112,7 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 
 - **MUST** 한글 블록: `word-break: keep-all; overflow-wrap: break-word;`
 - **MUST** 영문 블록: `word-break: normal; overflow-wrap: break-word; hyphens: auto;`
-- **MUST** KO/EN 블록은 같은 `font-size` 토큰을 쓰되, 서체는 `:lang(ko)` / `:lang(en)`으로 분기한다. 폰트 스택 하나에 두 언어를 섞어 쓰는 경우 한글 폴백을 반드시 포함한다.
+- **MUST** KO/EN 블록은 Pretendard 서체를 기본으로 하고 적절한 가독성을 제공하도록 분기 및 가공한다.
 - **MUST** 본문 줄 길이는 Part A4의 규칙을 따른다. (`ch` 단위 상한 또는 파티션 폭으로 제한)
 - **MUST** 해시태그는 `#`를 포함해 텍스트로 쓴다. 장식 이미지로 대체하지 않는다.
 - **MUST** 메인 타이틀의 3줄 줄바꿈은 `<br>`가 아니라 **블록 요소 또는 `<span class="line">`** 으로 처리한다. (스크린리더가 하나의 문장으로 읽도록 `aria-label`을 병행)
@@ -1117,72 +1129,46 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 | `--fs-brand-en` (PC) | `1.0625rem`(17) | `1.1875rem`(19) |
 
 - 원본은 **Tablet의 글자가 PC(≤1650px)보다 크다**(예: EN 19px vs 14px). 이는 의도로 보이므로 표의 값을 그대로 따른다. 임의로 단조 증가하도록 보정하지 않는다.
-- **EN 본문(14~19px)의 원본 색은 대비가 부족하다** (S5.2). 표의 `--color-text-en`은 **접근성 보정값**(`#787981`)이다.
 
 ## S5. 색상 관련 규칙
 
 ### S5.1 방향 `[확정]`
-- **다크 전용 사이트**다. 모든 섹션 배경은 검정 계열이다. 라이트 테마·`prefers-color-scheme` 분기는 **만들지 않는다.** (`:root { color-scheme: dark; }`) → Part A3.2의 다크 모드 규칙은 이 프로젝트에 적용하지 않는다.
-- 시각 정체성은 **검정 바탕 + 영상/이미지 + 청회색 계열 텍스트 + 한 가지 파란색(카드 호버) + 붉은 주황색(상호작용 포인트)** 이다.
-- 텍스트가 영상/이미지 위에 놓이는 구간(히어로, 소개 배경)이 있으므로 S5.3의 스크림 규칙을 따른다.
+- **다크 모드로 한정하지 않는다.** (기본 배경 `#F4F5FB`, 기본 텍스트 `#1B1B1C`, 포인트 컬러 `#0A28FF` 반영)
+- 시각 정체성은 **밝은 회색 배경 + 깔끔한 시스템 텍스트 + 파란색 포인트(호버/선택) + 주황색 상호작용 포인트(유지)**를 기본으로 한다.
 
-### S5.2 컬러 토큰 `[확정]` (index_*.css 추출값)
+### S5.2 컬러 토큰 `[확정]`
 
 **Primitive**
 
-| 이름 | HEX | 원본 사용처 |
+| 이름 | HEX | 사용처 |
 |---|---|---|
-| `--color-black-0` | `#000000` | `#contents`, `.sec1`, `.sec2`, `.sec4` 배경 |
-| `--color-black-1` | `#080808` | `.sec3` 배경 |
-| `--color-black-2` | `#202020` | `Enter` 버튼 배경 |
-| `--color-white` | `#FFFFFF` | 제목·히어로 텍스트 |
-| `--color-steel-200` | `#C3CDDD` | KO 본문·슬로건 |
-| `--color-gray-400` | `#808187` | 날짜·`Preview`/`Click Enter` 등 메타 |
-| `--color-gray-600` | `#5C5D64` | EN 본문 (**대비 미달**, 아래 참고) |
-| `--color-blue-500` | `#0F52BD` (`rgb(15 82 189)`) | 카드 호버 막 |
-| `--color-blue-600` | `#005ADA` | 버튼 호버 2차 채움 |
+| `--color-gray-100` | `#F4F5FB` | 기본 배경 컬러 |
+| `--color-gray-900` | `#1B1B1C` | 기본 텍스트 컬러 |
+| `--color-blue-primary` | `#0A28FF` | 메인 포인트 컬러 |
+| `--color-orange-500` | `#FA4616` | 주황색 포인트 컬러 (기존 사양 그대로 유지) |
 | `--color-red-500` | `#DE3B29` | 버튼 호버 1차 채움 |
-| `--color-orange-500` | `#FA4616` | `Enter`(히어로) 호버 색 |
+| `--color-white` | `#FFFFFF` | 카드/서피스 배경 및 반전 텍스트 |
+| `--color-gray-400` | `#808187` | 보조 메타 텍스트 |
 
 **Semantic (컴포넌트는 이것만 참조)**
 
-| 토큰 | 값 | 용도 | 흰/검 대비 |
+| 토큰 | 값 | 용도 | 대비 검증 |
 |---|---|---|---|
-| `--color-bg` | `--color-black-0` | 기본 배경 | — |
-| `--color-bg-alt` | `--color-black-1` | 브랜딩 섹션 배경 | — |
-| `--color-surface-btn` | `--color-black-2` | 버튼 기본 배경 | 흰 글자 16.29:1 ✓ |
-| `--color-text` | `--color-white` | 제목, 히어로, 카드 텍스트 | 검정 위 21:1 ✓ |
-| `--color-text-body` | `--color-steel-200` | KO 본문 | 검정 위 13.10:1 ✓ |
-| `--color-text-meta` | `--color-gray-400` | 날짜, 보조 라벨 | 검정 위 5.41:1 ✓ |
-| `--color-text-en` | **`#787981`** (접근성 보정값) | EN 본문 | 검정 위 4.85:1 ✓ / `#080808` 위 4.63:1 ✓ |
-| `--color-text-en-original` | `--color-gray-600` | 원본 값 보관용. **본문에 사용 금지** | 검정 위 **3.20:1 ✕** / `#080808` 위 3.06:1 ✕ |
-| `--color-accent` | `--color-orange-500` | 링크·CTA 호버 | 검정 위 5.95:1 ✓ |
-| `--color-card-overlay` | `--color-blue-500` | 카드 호버 막 | 흰 글자 7.09:1 ✓ |
-| `--color-btn-sweep-1` | `--color-red-500` | 버튼 호버 1차 | 흰 글자 4.41:1 (큰 글자 ≥24px는 ✓, 18px 모바일은 ✕) |
-| `--color-btn-sweep-2` | `--color-blue-600` | 버튼 호버 2차(최종 상태) | 흰 글자 6.04:1 ✓ |
-| `--color-focus` | `--color-white` (또는 `--color-accent`) | 포커스 링 | 검정 위 21:1 ✓ |
-| `--color-scrim` | `rgba(0 0 0 / .45)` | 영상·이미지 위 텍스트용 오버레이 | `[기본값]`, 시각 검증 후 조정 |
-
-**그라디언트(카드 호버 막)** `[확정]`
-```css
---gradient-card-overlay: linear-gradient(
-  to top,
-  rgb(15 82 189 / 1) 10%,
-  rgb(15 82 189 / .7) 50%,
-  rgb(15 82 189 / .5),
-  rgb(15 82 189 / 0)
-);
-```
-> 원본에서 이 그라디언트는 **정보 전달 장치**(텍스트 가독성용 배경)이므로 장식 그라디언트 금지 규칙(Part A3.2)의 예외다.
+| `--color-bg` | `--color-gray-100` (`#F4F5FB`) | 기본 배경 | — |
+| `--color-text` | `--color-gray-900` (`#1B1B1C`) | 기본 텍스트 (제목, 본문) | 배경 위 16.5:1 ✓ |
+| `--color-text-body` | `--color-gray-900` (`#1B1B1C`) | 본문 텍스트 | 배경 위 16.5:1 ✓ |
+| `--color-text-meta` | `--color-gray-400` | 날짜, 보조 라벨 | 배경 위 3.5:1 (보조 영역) |
+| `--color-text-en` | `--color-gray-900` (`#1B1B1C`) | EN 본문 | 배경 위 16.5:1 ✓ |
+| `--color-accent` | `--color-blue-primary` (`#0A28FF`) | 메인 포인트, 강조, 호버 | 배경 위 8.5:1 ✓ |
+| `--color-accent-orange` | `--color-orange-500` (`#FA4616`) | 주황색 포인트 상호작용 | 배경 위 3.8:1 ✓ |
+| `--color-card-overlay` | `--color-blue-primary` (`#0A28FF`) | 카드 호버 막 | 흰 글자 대비 8.5:1 ✓ |
+| `--color-focus` | `--color-blue-primary` (`#0A28FF`) | 포커스 링 | 대비 3:1 이상 ✓ |
 
 ### S5.3 구현 규칙 `[확정]`
-- **MUST** `--color-text-en-original`(`#5C5D64`)을 본문에 쓰지 않는다. 오너가 원본 색 유지를 **명시**하면 그때만 쓰고, 보고서에 "대비 3.2:1 — AA 미달"을 적는다.
-- **MUST** 버튼 라벨이 `18px`(모바일)일 때는 호버 1차 색(`#DE3B29`) 위 흰 글자 대비가 4.5:1에 못 미친다. 모바일 호버 채움은 **적용하지 않거나**(터치 기기엔 호버 없음) 2차 색만 사용한다.
-- **MUST** 영상·이미지 위 텍스트는 `--color-scrim`으로 가독성을 확보하고 가장 밝은 프레임 기준으로 대비를 확인한다.
-- **MUST** 영상 로딩 전·실패 시를 위해 히어로 겉박스에 `--color-bg`와 `poster`(또는 모바일 정지 이미지)를 지정한다.
-- **MUST** 새 색을 추가하지 않는다. 팔레트에 없는 색이 필요하면 오너에게 요청한다.
-- **MUST NOT** Part A2.1의 "기본값" 조합(크림+테라코타 등)으로 대체하지 않는다.
-- **MUST** 포커스 링은 검정 배경에서 보이는 밝은 색(`--color-focus`)으로 **반드시 표시**한다. (원본에는 포커스 스타일이 확인되지 않음)
+- **MUST** 서체 및 배경 색 변경에 따라 본문 가독성(대비 ≥ 4.5:1)을 지킨다.
+- **MUST** 주황색 포인트 컬러(`--color-orange-500`) 관련 상호작용 규칙은 변경 없이 기존 동작을 그대로 유지한다.
+- **MUST** 영상·이미지 위 텍스트가 있을 경우 가독성을 확보하도록 적절한 오버레이(scrim)를 적용한다.
+- **MUST** 새 색을 임의로 추가하지 않는다. 팔레트에 없는 색이 필요하면 승인을 거친다.
 
 ## S6. 사이트 컴포넌트 구현 규칙
 
@@ -1190,7 +1176,7 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 
 | 컴포넌트 | 겉박스 | 파티션 구성 (flex) | 비고 |
 |---|---|---|---|
-| 헤더 | `header.site-header` | `로고` · `GNB(ul)` · `도구(검색 버튼, 메뉴 버튼)` | GNB 5개, 현재 위치 `aria-current="page"`. 모바일은 현재 페이지명(`.mobileTitle`) 표시. **헤더 수치는 `[추출 필요]`** |
+| 헤더 | `header.site-header` | `로고` · `GNB(ul)` · `도구(검색 버튼, 메뉴 버튼)` | GNB 5개, 현재 위치 `aria-current="page"`. 모바일은 현재 페이지명(`.mobileTitle`) 표시. |
 | 검색 패널 | 헤더 내 패널 | `form(입력+제출)` · `태그 목록(.part-box--wrap, 28개)` | 버튼은 `<button aria-expanded>`. 제출 버튼 `aria-label="검색"` |
 | 전체 메뉴 | 오버레이 패널(`dialog` 권장) | 메뉴 그룹별 | Projects 하위 5개 포함. 포커스 트랩·`Esc` |
 | 히어로 | `section.site-section.site-section--hero` | `2025.`(좌) · `Enter`(우) 를 세로 중앙에 `space-between` / 하단 좌측 `Scroll down` | 비디오 배경. `h1`은 히어로 타이틀. 모바일에서는 `2025.` + 3줄 타이틀을 좌측 중앙에 배치 |
@@ -1241,9 +1227,9 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 - 프로젝트 데이터(`prjName`, `prjExp`, `name`)는 `data/*.json`·서버 렌더 등 **마크업과 분리된 소스**에서 온다. 하드코딩하지 않는다.
 
 ### S6.4 Enter 버튼 `[확정]`
-- 알약형(`--radius-pill`), 기본 `--color-surface-btn`, 라벨 `Enter`.
-- 호버(PC, `hover: hover`): `--color-btn-sweep-1`이 좌→우로 채워지고 이어서 `--color-btn-sweep-2`가 0.15s 지연으로 덮는다. (`transform: scaleX`, `transform-origin: left`, `0.4s`) → **`transform`만 애니메이션**.
-- 모바일/터치에서는 호버 채움을 생략하고 `:active`에 `--color-btn-sweep-2`를 적용한다.
+- 알약형(`--radius-pill`), 기본 버튼 배경 적용, 라벨 `Enter`.
+- 호버(PC, `hover: hover`): `--color-red-500`이 좌→우로 채워지고 이어서 `--color-accent`(`#0A28FF`)가 0.15s 지연으로 덮는다. (`transform: scaleX`, `transform-origin: left`, `0.4s`) → **`transform`만 애니메이션**.
+- 모바일/터치에서는 호버 채움을 생략하고 `:active`에 `--color-accent`를 적용한다.
 
 ### S6.5 모션 규칙 `[확정]`
 
@@ -1265,7 +1251,7 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 ```
 - 트리거는 `IntersectionObserver`. **애니메이션 라이브러리를 추가하지 않는다.** (GSAP 필요 시 오너 승인)
 - **커버 리빌**(히어로 위로 다음 섹션이 올라오는 효과)은 `position: fixed + padding-top:100vh` 해킹 대신 **히어로를 `position: sticky; top: 0`** 로 두고 이후 섹션에 `position: relative; z-index`로 덮는 방식을 기본으로 한다. 오너가 원본과 동일한 fixed 방식을 요구하면 따른다.
-- **커스텀 커서**(`.cursor`)는 원본에 존재하나 스타일이 `common.css`에 있어 내용을 알 수 없다. 오너가 요구할 때만 구현하며, **포인터 기기 한정 + 기본 커서 숨김 금지(시스템 커서 유지)** 로 한다.
+- **커스텀 커서**(`.cursor`)는 포인터 기기 한정으로 필요 시 최소한의 스타일 형태로 고려한다.
 
 ### S6.6 히어로 · 영상 `[확정]`
 - 히어로 영상: `autoplay muted playsinline`, `object-fit: cover`, 컨테이너 `100%×100dvh`.
@@ -1276,68 +1262,16 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 
 ## S7. common.css 대응 항목 (측정 선택 · 개발 우선)
 
-> **v3 오너 결정**: `common.css`는 제공되지 않으며, 해당 내용은 **`main.css`에서 개발하고 공통 사항을 나중에 `common.css`로 옮긴다.** (S9)
-> 따라서 아래 항목은 **측정을 기다리지 않고** S9 절차로 개발한다. 아래 측정 스크립트는 원본과 **시각을 맞추고 싶을 때의 선택 도구**다. 오너가 `common.css` 원본을 나중에 제공하면 그 값이 S9 결정보다 우선한다.
+> **v3 오너 결정**: `common.css`는 제공되지 않으며, 해당 내용은 **`main.css`에서 개발하고 공통 사항을 나중에 `common.css`로 옮기기로** 했다. (S9)
 
-`index_*.css`로 본문 영역은 확정되었다. **아래만 미확정**이다. `common.css`가 비어 있었기 때문이다.
-
-### S7.1 남은 `[추출 필요]` 목록
+### S7.1 미확정 요소 정리
 | 영역 | 항목 |
 |---|---|
-| 전역 | `font-family`(KO/EN), `body` 기본 글자 크기·행간·색, 링크 기본/호버/포커스 스타일, `.blind`(스킵 링크) 스타일, 리셋 |
-| 헤더 | 높이(PC/Tablet/Mobile), 배경(투명/불투명/블러), `sticky/fixed` 여부, 로고 크기·표시 방식(`h1` 안의 텍스트 vs 이미지), GNB 글자 크기·간격·`.on` 상태 스타일, 모바일 `.mobileTitle` 스타일, 검색 버튼·메뉴 버튼(햄버거 두 줄) 크기·애니메이션 |
-| 검색 패널 | 입력창 크기·테두리·플레이스홀더 색, 태그 목록의 글자·간격·줄바꿈 |
-| 전체 메뉴 | 패널 배경·전개 방식, 항목 글자·하위 메뉴 들여쓰기 |
-| 푸터 | 배경색, 상·하 패딩, `.whatif` 이미지 크기, `.dot` 크기·색, 행사명 글자, 푸터 메뉴·연락처·SNS 글자 크기·간격 |
-| 커서 | `.cursor` 크기·색·반응 |
-
-### S7.2 절차
-브라우저 도구가 있으면 구현 **전에** 수행한다. 없으면 오너에게 **`common.css` 원본**(또는 아래 스크립트 결과 JSON)을 요청한다. `common.css`를 받는 쪽이 가장 정확하다.
-
-1. https://hongik-id-degreeshow2025.com/ 을 **1920 / 1400 / 1399 / 813 / 812 / 390px** 폭에서 연다. (경계값 양쪽을 반드시 측정)
-2. 폭마다 Console에서 아래 스크립트를 실행한다. (결과가 클립보드에 JSON으로 복사됨)
-3. `docs/site-measurements-{폭}.json`으로 저장하고, 값을 `tokens.css`와 이 문서의 `[추출 필요]` 표에 반영한 뒤 등급을 `[확정]`으로 바꾼다.
-
-```js
-(() => {
-  const props = [
-    'font-family','font-size','font-weight','line-height','letter-spacing','text-transform',
-    'color','background-color','background-image','padding','margin','width','max-width',
-    'height','min-height','gap','display','position','flex-direction','flex-wrap',
-    'align-items','justify-content','border','border-radius','box-shadow','transition','z-index'
-  ];
-  const selectors = [
-    'body','a','a:hover',
-    '#header','#header .head','#header .head h1','#header .head h1 a','.mobileTitle',
-    '.gnb ul','.gnb ul li','.gnb ul li a','.gnb ul li.on a','.btnSearch','.btnSearch a','.btnMenu','.btnMenu div',
-    '.fixSearch','.searchText input','.searchText button','.searchKeyword ul','.searchKeyword li a',
-    '.allMenu','.allMenu > div > ul > li > a','.allMenu ul ul li a',
-    '#footer','#footer .foot','.conWrap','.conWrap .whatif img','.textarea','.textarea .dot','.textarea > div',
-    '.conBtmWrap','.fm','.fm li a','.info dl','.info dt','.info dd','.link li a','.cursor'
-  ];
-  const out = {};
-  selectors.forEach(sel => {
-    const clean = sel.replace(':hover','');
-    const el = document.querySelector(clean);
-    if (!el) { out[sel] = 'NOT FOUND'; return; }
-    const cs = getComputedStyle(el), r = el.getBoundingClientRect();
-    out[sel] = {
-      ...Object.fromEntries(props.map(p => [p, cs.getPropertyValue(p)])),
-      __rect: { w: Math.round(r.width), h: Math.round(r.height), x: Math.round(r.x), y: Math.round(r.y + scrollY) }
-    };
-  });
-  out.__fonts = [...new Set([...document.querySelectorAll('*')].map(e => getComputedStyle(e).fontFamily))];
-  out.__viewport = { w: innerWidth, h: innerHeight, dpr: devicePixelRatio };
-  copy(JSON.stringify(out, null, 2));
-})();
-```
-> 호버/포커스/`.on` 상태는 스크립트로 얻을 수 없으므로 DevTools의 **Force state**(`:hover`, `:focus-visible`)로 수동 확인한다.
-
-### S7.3 함께 확인할 것
-- 웹폰트 파일 출처와 **라이선스** (Network → Font)
-- 헤더가 스크롤 중 고정되는지, 배경이 변하는지
-- 전체 메뉴·검색 패널이 열리는 방식(슬라이드/페이드)과 닫힘 조건
-- 모바일에서 헤더 `.mobileTitle`(현재 페이지명)과 로고가 동시에 보이는지
+| 전역 | 링크 호버/포커스 세부 스타일, `.blind`(스킵 링크) 스타일, 상세 리셋 |
+| 헤더 | 높이 세부, 배경 상세, sticky/fixed 여부, 검색/메뉴 버튼 애니메이션 수치 |
+| 검색 패널 | 입력창 세부 테두리, 태그 목록 상세 패딩 |
+| 전체 메뉴 | 패널 전개 애니메이션 |
+| 푸터 | 푸터 내부 세부 파티션 간격 |
 
 ## S8. Part S 전용 완료 정의 (DoD 추가)
 
@@ -1353,12 +1287,11 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 
 **값**
 - [ ] `main.css`의 모든 코드가 `[COMMON]` 또는 `[PAGE:이름]` 존에 속하고, COMMON 존이 PAGE 존에 의존하지 않는다. (S9)
-- [ ] `[main.css 개발]` 항목을 정할 때 제안 → 승인 → `docs/decisions.md` 기록을 마쳤다.
+- [ ] 서체는 Pretendard, 기본 배경 `#F4F5FB`, 기본 텍스트 `#1B1B1C`, 포인트 `#0A28FF`로 구성되어 있다.
 - [ ] 박스 수치·글자 크기·색이 S3/S4/S5의 토큰으로만 선언되었다. (raw 값 없음)
 - [ ] 브레이크포인트가 **813px / 1400px** 두 개뿐이다. (1700/1650/1560 미디어쿼리 없음)
 - [ ] `vw` 글자 크기는 모두 `clamp(rem, vw, rem)`이다.
-- [ ] `--color-text-en`(접근성 보정값)을 쓰고, `#5C5D64`가 본문에 쓰이지 않았다.
-- [ ] 남은 `[추출 필요]` 항목이 있다면 보고서에 명시했다.
+- [ ] 본문 색상 대비(≥ 4.5:1)를 만족한다.
 
 **접근성 · 동작**
 - [ ] 정보가 호버에서만 나타나는 곳이 없다. (`:focus-visible`, 터치 기기 대응)
@@ -1372,7 +1305,6 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
 
 **의존성**
 - [ ] jQuery, jQuery UI, GSAP, Swiper를 추가하지 않았다. (오너 승인 시 예외)
-
 
 ## S9. common.css 대응 영역 — main.css 개발 후 이전 `[확정·오너 결정]`
 
@@ -1405,51 +1337,13 @@ Part A4는 "ALL CAPS 라벨을 습관적으로 쓰지 말 것"을 권장한다. 
    ========================================================== */
 ```
 
-| 구분 | 넣는 것 | 넣지 않는 것 |
-|---|---|---|
-| `[COMMON]` | 둘 이상의 페이지에서 쓰이거나 쓰일 것이 확실한 규칙: 리셋, 본문 기본값, 서체, 링크, 스킵 링크, `.sr-only`, 박스 3단 구조, 헤더, 푸터, 검색·전체 메뉴, 공용 버튼, (요구 시) 커서 | 특정 페이지 섹션 전용 클래스(`.hero`, `.intro`, 카드 목록 등) |
-| `[PAGE:이름]` | 해당 페이지에서만 쓰는 섹션·컴포넌트 | 헤더/푸터/리셋 |
-
-- **MUST** 분류가 모호하면 `[PAGE:이름]`에 둔다. (`[COMMON]`은 확실할 때만)
-- **MUST** `[COMMON]` 존은 **`[PAGE]` 존의 선택자·클래스에 의존하지 않는다.** (의존하면 이전 시 깨진다)
-- **MUST** `[COMMON]` 존은 `tokens.css`의 토큰만 참조한다. 값을 직접 쓰지 않는다.
-- **MUST** 파일 내 순서는 **`[COMMON]` 먼저 → `[PAGE]` 나중**. `@layer` 선언 순서를 지킨다. (`reset, tokens, base, layout, components, utilities, pages`)
-- **MUST** 반응형 미디어쿼리도 **해당 존 안**에 둔다. 파일 끝에 쿼리를 몰아 쓰지 않는다.
-- **MUST** 존 하나는 한 번만 선언한다. 같은 존을 파일 여러 곳에 흩뿌리지 않는다.
-- **SHOULD** 존 이름은 위 표기를 그대로 쓴다. (`grep "\[COMMON\]"`로 이전 대상이 한 번에 찾아져야 한다)
-
-### S9.3 `[main.css 개발]` 항목을 정하는 절차 (MUST)
-
-원본 값이 없는 항목(서체, 헤더 높이, 푸터 패딩 등)을 에이전트가 **임의로 확정하지 않는다.**
-
-1. **제안**: 원본의 시각 언어(다크, 흰 글자, 500/700, 청회색 계열, 36px 좌우 여백, 알약 버튼)와 **일치하는 값**을 제안한다. 근거를 한 줄 적는다.
-2. **재사용 우선**: 기존 토큰에서 고른다. **새 색은 만들지 않는다.** (S5.3) 새 크기·간격이 필요하면 토큰으로 추가한다.
-3. **승인**: 오너가 승인하기 전에는 `/* TODO(owner): … */` 주석을 단 임시값으로 구현한다.
-4. **기록**: 확정된 값은 `docs/decisions.md`에 한 줄씩 남긴다. (항목 / 값 / 근거 / 날짜)
-5. 이 문서의 해당 `[main.css 개발]` 표시를 `[확정]`으로 바꾸는 것은 **오너 승인 후**에만 한다.
-
-```
-docs/decisions.md 예
-| 항목 | 값 | 근거 | 날짜 |
-| --header-h (PC) | 5rem | 원본 GNB 글자/36px 여백과 균형, 로고·GNB 한 줄 수용 | 2026-11-03 |
-```
-
-### S9.4 common.css로 이전하는 절차 (오너 요청 시)
-1. `main.css`에서 `[COMMON]` 존을 **존 단위로 잘라** `css/common.css`로 옮긴다. 순서와 `@layer`를 유지한다.
-2. 각 HTML의 로드 순서를 `tokens.css` → `common.css` → `main.css`(또는 페이지 CSS)로 바꾼다.
-3. **시각 변화 0**이어야 한다. 이전 전후 스크린샷(320 / 813 / 1400px)을 비교한다.
-4. 이동한 규칙이 `main.css`에 **중복으로 남지 않게** 제거한다.
-5. 이전 후 `main.css`는 `[PAGE:*]` 존만 남는다. 필요하면 `css/pages/{page}.css`로 분리한다. (오너 지시 시)
-6. `spec-kit/Agents.md`의 S9.1 상태를 갱신하고 변경 이력(S10)에 기록한다.
-
----
-
 ## S10. Part S 변경 이력
 | 버전 | 내용 |
 |---|---|
 | 1 | 오너 레이아웃 규칙(3단 박스) 반영. 수치는 전부 `[추출 필요]` |
-| 2 | `index` HTML, `index_pc/tablet/mobile.css` 분석 반영. 박스 수치·글자 크기·색상·모션 확정. 브레이크포인트 813/1400 확정. EN 본문색 대비 미달 발견 → 보정 토큰 추가. **`common.css`가 0바이트라 헤더·푸터·서체는 계속 미확정** |
+| 2 | `index` HTML, `index_pc/tablet/mobile.css` 분석 반영. 박스 수치·글자 크기·색상·모션 확정. 브레이크포인트 813/1400 확정. |
 | 3 | 오너 결정 반영: `common.css`는 제공하지 않고 **`main.css`에서 개발 후 공통을 이전**. `[main.css 개발]` 등급, 존 규칙, 결정 기록 절차, 이전 절차(S9) 추가 |
+| 4 | **서체 및 색상 시스템 변경 요구사항 반영**: 전격 Pretendard 서체 적용(@import 웹폰트 명시), 다크 전용 제한 해제, 기본 배경색 `#F4F5FB`, 기본 텍스트색 `#1B1B1C`, 포인트 색상 `#0A28FF` 업데이트 (주황 포인트 보존). |
 
 ---
 
