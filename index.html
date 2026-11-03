@@ -11,12 +11,26 @@
     <title>What If | 홍익대학교 산업디자인학과 2025 졸업전시</title>
     <link rel="stylesheet" href="css/base/tokens.css">
     <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/main.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#contents">본문 바로가기</a>
     <header class="site-header">
       <div class="inner-box">
         <div class="part-box site-header__layout">
+          <button
+            class="site-header__menu-toggle"
+            type="button"
+            hidden
+            aria-label="메뉴 열기"
+            aria-expanded="false"
+            aria-controls="site-header-navigation"
+            data-menu-toggle
+          >
+            <span></span>
+            <span></span>
+          </button>
+
           <a class="site-header__brand" href="#contents" aria-label="What If 홈">
             <span class="site-header__wordmark" lang="en">What If</span>
             <span class="site-header__school" lang="en">
@@ -26,9 +40,30 @@
             </span>
           </a>
 
-          <nav class="site-header__navigation" aria-label="주요 메뉴">
-            <ul class="part-box site-header__menu" lang="en">
-              <li class="site-header__menu-item">PROJECTS</li>
+          <nav
+            class="site-header__navigation"
+            id="site-header-navigation"
+            aria-label="주요 메뉴"
+          >
+            <ul
+              class="part-box site-header__menu"
+              lang="en"
+            >
+              <li class="site-header__menu-item site-header__menu-item--mobile-home">
+                HOME
+              </li>
+              <li class="site-header__menu-item site-header__menu-item--projects">
+                PROJECTS
+                <!--
+                <ul class="site-header__submenu">
+                  <li>All</li>
+                  <li>Product</li>
+                  <li>Mobility</li>
+                  <li>Spatial</li>
+                  <li>Interaction</li>
+                </ul>
+                -->
+              </li>
               <li class="site-header__menu-item">MAGAZINE</li>
               <li class="site-header__menu-item">EXHIBITION</li>
               <li class="site-header__menu-item">INDEX</li>
@@ -52,6 +87,11 @@
               What If 2025 홍익대학교 산업디자인학과 졸업전시
             </h1>
             <p class="hero__year" lang="en">2025.</p>
+            <p class="hero__description" lang="en">
+              Hongik University<br>
+              Industrial Design<br>
+              Degree Show
+            </p>
             <a class="hero__enter" href="#contents" lang="en">Enter</a>
           </div>
         </div>

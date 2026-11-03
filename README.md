@@ -11,9 +11,10 @@
 
 1. 이 `README.md`를 끝까지 읽는다.
 2. `spec-kit/Agents.md`를 **전체** 읽는다. 특히 **PART S(프로젝트 전용)** 는 일반 규칙(PART A·B)보다 우선한다.
-3. `spec-kit/reference/`의 원본 자료(HTML, CSS)를 열어 본다. 디자인 값의 근거다.
-4. 현재 코드 상태를 확인한다. (`css/base/tokens.css`, `css/layout/`, 기존 컴포넌트)
-5. **구현을 시작하기 전에** 아래 형식으로 **확인 보고**를 먼저 올린다. 오너가 승인하면 구현을 시작한다.
+3. `task-history.md`를 읽어 이전 작업 결과와 남은 일을 확인한다. 이미 완료된 작업을 반복하지 않는다.
+4. `spec-kit/reference/`의 원본 자료(HTML, CSS)를 열어 본다. 디자인 값의 근거다.
+5. 현재 코드 상태를 확인한다. (`css/base/tokens.css`, `css/layout/`, 기존 컴포넌트)
+6. **구현을 시작하기 전에** 아래 형식으로 **확인 보고**를 먼저 올린다. 오너가 승인하면 구현을 시작한다.
 
 ```
 [확인 보고]
@@ -50,6 +51,7 @@
 | `README.md` (이 문서) | 진입점, 시작 절차, 미확정 사항 | — |
 | `spec-kit/Agents.md` — **PART S** | 프로젝트 전용 규칙 (3단 박스, 수치, 글자, 색, 컴포넌트) | **최상위** |
 | `spec-kit/Agents.md` — PART A / B / C | 일반 디자인 · 개발 · 협업 규약 | PART S 다음 |
+| `task-history.md` | 이전 작업 결과, 현재 상태, 미완료 사항 | 연속 작업 참고 |
 | `spec-kit/reference/` | 원본 `index` HTML, `index_pc/tablet/mobile.css` | 값의 근거 (읽기 전용) |
 | `docs/site-measurements-*.json` | 원본 사이트 측정값 (선택, 생기면) | 값의 근거 |
 | `docs/decisions.md` | `[main.css 개발]` 항목의 승인된 결정값 기록 | 확정 이후 근거 |
