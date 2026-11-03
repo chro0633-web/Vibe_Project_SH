@@ -1,44 +1,87 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
 @layer tokens {
   :root {
-    color-scheme: dark;
+    color-scheme: light dark;
 
-    --color-black-0: #000000;
-    --color-black-1: #080808;
-    --color-white: #ffffff;
-    --color-steel-200: #c3cddd;
-    --color-gray-400: #808187;
+    /* Primitive Colors (spec-kit/Agents.md PART S5.2) */
+    --color-gray-100: #f4f5fb;
+    --color-gray-900: #1b1b1c;
+    --color-blue-primary: #0a28ff;
     --color-orange-500: #fa4616;
+    --color-red-500: #de3b29;
+    --color-white: #ffffff;
+    --color-gray-400: #808187;
 
-    --color-bg: var(--color-black-0);
-    --color-text: var(--color-white);
-    --color-text-body: var(--color-steel-200);
+    /* Semantic Colors (spec-kit/Agents.md PART S5.2) */
+    --color-bg: var(--color-gray-100);
+    --color-text: var(--color-gray-900);
+    --color-text-body: var(--color-gray-900);
     --color-text-meta: var(--color-gray-400);
-    --color-accent: var(--color-orange-500);
-    --color-focus: var(--color-white);
+    --color-text-en: var(--color-gray-900);
+    --color-accent: var(--color-blue-primary);
+    --color-accent-orange: var(--color-orange-500);
+    --color-card-overlay: var(--color-blue-primary);
+    --color-focus: var(--color-blue-primary);
 
-    --font-ko: "Malgun Gothic", "Noto Sans KR", Arial, sans-serif; /* TODO(owner): confirm font */
-    --font-en: Arial, sans-serif; /* TODO(owner): confirm font */
+    /* Hero & Dark Overlay Text (어두운 배경 위 가독성 보장) */
+    --color-hero-text: var(--color-white);
+    --color-hero-text-muted: var(--color-gray-400);
 
+    /* Fonts (spec-kit/Agents.md PART A4, S4.1, S4.3) */
+    --font-ko: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    --font-en: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+
+    /* Type Scale - Header / Common */
     --fs-body: 1rem;
-    --fs-brand: clamp(2.5rem, 3vw, 3.75rem); /* TODO(owner): confirm header type scale */
-    --fs-brand-sub: clamp(0.625rem, 0.65vw, 0.75rem); /* TODO(owner): confirm */
-    --fs-nav: clamp(0.625rem, 0.6vw, 0.75rem); /* TODO(owner): confirm */
+    --fs-brand: clamp(2.5rem, 3vw, 3.75rem);
+    --fs-brand-sub: clamp(0.625rem, 0.65vw, 0.75rem);
+    --fs-nav: clamp(0.625rem, 0.6vw, 0.75rem);
     --fs-hero-side: 1.4375rem;
     --fs-mobile-brand: clamp(2rem, 8vw, 2.5rem);
     --fs-mobile-hero: 0.875rem;
     --fs-mobile-menu: 1.25rem;
 
-    --inner-max: 120rem;
+    /* Type Scale - Intro Section (spec-kit/Agents.md S4.3) */
+    --fs-intro-wordmark: clamp(3.25rem, 11vw, 9.5rem);
+    --fs-slogan: 1.25rem;
+    --fs-intro-title: 1.125rem;
+    --fs-body-ko: 1rem;
+    --fs-body-en: 0.875rem;
+
+    /* Line Heights */
+    --line-body: 1.5;
+    --line-brand: 0.9;
+    --line-brand-sub: 1.15;
+    --line-slogan: 1.8;
+    --line-intro-title: 1.3;
+    --line-body-ko: 1.5;
+    --line-body-en: 1.5;
+
+    /* Box & Layout Tokens (spec-kit/Agents.md PART S3) */
+    --inner-max: 120rem; /* 1920px */
     --inner-pad-x: 5%;
+    --section-min-h: 100vh;
+    --section-min-h: 100dvh;
     --hero-h: 100vh;
     --hero-h: 100dvh;
     --hero-pad-block: 0;
     --body-min-inline: 20rem;
     --viewport-min-block: 100vh;
     --viewport-min-block: 100dvh;
-    --line-body: 1.5;
-    --line-brand: 0.9; /* TODO(owner): confirm */
-    --line-brand-sub: 1.15; /* TODO(owner): confirm */
+
+    --part-gap: 1.25rem;
+    --para-gap: 1.875rem; /* 30px */
+    --lang-group-gap: 3.75rem; /* 60px */
+    --intro-text-top: clamp(1.5rem, 4vw, 4.5rem);
+    --intro-pad-block: clamp(3.5rem, 8vw, 7.5rem);
+    --intro-content-w: 90%;
+    --intro-mobile-content-w: 85%;
+    --intro-bg-size: 100% auto;
+    --intro-bg-position: center 10%;
+
+    /* Radius & Effects (spec-kit/Agents.md PART S3.5) */
+    --radius-pill: 3.125rem; /* 50px */
     --focus-outline: 2px;
     --focus-outline-offset: 2px;
     --visually-hidden-size: 1px;
@@ -46,11 +89,12 @@
     --visually-hidden-clip: 50%;
     --radius-icon: 50%;
     --icon-angle: 45deg;
-    --part-gap: 1.25rem;
-    --header-pad-block: 1rem; /* TODO(owner): header measurements unavailable */
-    --header-gap: clamp(1rem, 2vw, 2.25rem); /* TODO(owner): confirm */
-    --brand-gap: 1.25rem; /* TODO(owner): confirm */
-    --nav-gap: clamp(1.25rem, 2.4vw, 2.25rem); /* TODO(owner): confirm */
+
+    /* Header & Navigation */
+    --header-pad-block: 1rem;
+    --header-gap: clamp(1rem, 2vw, 2.25rem);
+    --brand-gap: 1.25rem;
+    --nav-gap: clamp(1.25rem, 2.4vw, 2.25rem);
     --skip-link-pad-block: 0.5rem;
     --skip-link-pad-inline: 1rem;
     --skip-link-offset: -100%;
@@ -76,24 +120,45 @@
     --menu-item-pad-block: 1.125rem;
     --menu-item-border-width: 1px;
     --menu-panel-bg: var(--color-white);
-    --menu-panel-text: var(--color-black-0);
+    --menu-panel-text: var(--color-gray-900);
     --menu-item-border: var(--color-gray-400);
     --menu-panel-duration: 300ms;
+
+    /* Hero Background Positions */
     --hero-desktop-position: center center;
     --hero-mobile-position: 68% center;
     --hero-mobile-copy-gap: 2rem;
 
+    /* Z-Index Tokens (spec-kit/Agents.md PART B4.2, S3.5) */
     --z-base: 0;
-    --z-header: 10;
-    --z-skip-link: 20;
+    --z-deco: 10;
+    --z-overlay-text: 100;
+    --z-header: 110;
+    --z-skip-link: 200;
 
+    /* Motion Tokens (spec-kit/Agents.md PART S6.5) */
     --duration-fast: 150ms;
+    --duration-hover: 400ms;
     --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   }
 
+  /* Tablet (spec-kit/Agents.md PART S1.4: min-width: 813px) */
   @media (min-width: 813px) {
     :root {
-      --inner-pad-x: 2.25rem;
+      --inner-pad-x: 2.25rem; /* 36px */
+      --fs-slogan: 1.5625rem; /* 25px */
+      --fs-intro-title: 1.5625rem; /* 25px */
+      --fs-body-ko: 1.4375rem; /* 23px */
+      --fs-body-en: 1.1875rem; /* 19px */
+    }
+  }
+
+  /* PC (spec-kit/Agents.md PART S1.4: min-width: 1400px) */
+  @media (min-width: 1400px) {
+    :root {
+      --fs-intro-title: clamp(1.375rem, 1.6vw, 2.5rem);
+      --fs-body-ko: clamp(1.25rem, 1.4vw, 1.4375rem);
+      --fs-body-en: clamp(0.875rem, 1.1vw, 1.0625rem);
     }
   }
 }

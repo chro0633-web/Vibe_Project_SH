@@ -1,60 +1,45 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="홍익대학교 산업디자인학과 2025 졸업전시 What If."
-    >
-    <meta name="theme-color" content="#000000">
-    <title>What If | 홍익대학교 산업디자인학과 2025 졸업전시</title>
-    <link rel="stylesheet" href="css/base/tokens.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script type="module" src="js/main.js"></script>
-  </head>
-  <body>
-    <a class="skip-link" href="#contents">본문 바로가기</a>
-    <header class="site-header">
-      <div class="inner-box">
-        <div class="part-box site-header__layout">
-          <button
-            class="site-header__menu-toggle"
-            type="button"
-            hidden
-            aria-label="메뉴 열기"
-            aria-expanded="false"
-            aria-controls="site-header-navigation"
-            data-menu-toggle
-          >
-            <span></span>
-            <span></span>
-          </button>
 
-          <a class="site-header__brand" href="#contents" aria-label="What If 홈">
-            <span class="site-header__wordmark" lang="en">What If</span>
-            <span class="site-header__school" lang="en">
-              Hongik University<br>
-              Industrial Design<br>
-              Degree Show
-            </span>
-          </a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="홍익대학교 산업디자인학과 2025 졸업전시 What If.">
+  <meta name="theme-color" content="#f4f5fb">
+  <title>What If | 홍익대학교 산업디자인학과 2025 졸업전시</title>
+  <link rel="stylesheet" href="css/base/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="module" src="js/main.js"></script>
+</head>
 
-          <nav
-            class="site-header__navigation"
-            id="site-header-navigation"
-            aria-label="주요 메뉴"
-          >
-            <ul
-              class="part-box site-header__menu"
-              lang="en"
-            >
-              <li class="site-header__menu-item site-header__menu-item--mobile-home">
-                HOME
-              </li>
-              <li class="site-header__menu-item site-header__menu-item--projects">
-                PROJECTS
-                <!--
+<body>
+  <a class="skip-link" href="#contents">본문 바로가기</a>
+  <header class="site-header">
+    <div class="inner-box">
+      <div class="part-box site-header__layout">
+        <button class="site-header__menu-toggle" type="button" hidden aria-label="메뉴 열기" aria-expanded="false"
+          aria-controls="site-header-navigation" data-menu-toggle>
+          <span></span>
+          <span></span>
+        </button>
+
+        <a class="site-header__brand" href="#contents" aria-label="What If 홈">
+          <span class="site-header__wordmark" lang="en">What If</span>
+          <span class="site-header__school" lang="en">
+            Hongik University<br>
+            Industrial Design<br>
+            Degree Show
+          </span>
+        </a>
+
+        <nav class="site-header__navigation" id="site-header-navigation" aria-label="주요 메뉴">
+          <ul class="part-box site-header__menu" lang="en">
+            <li class="site-header__menu-item site-header__menu-item--mobile-home">
+              HOME
+            </li>
+            <li class="site-header__menu-item site-header__menu-item--projects">
+              PROJECTS
+              <!--
                 <ul class="site-header__submenu">
                   <li>All</li>
                   <li>Product</li>
@@ -63,45 +48,100 @@
                   <li>Interaction</li>
                 </ul>
                 -->
-              </li>
-              <li class="site-header__menu-item">MAGAZINE</li>
-              <li class="site-header__menu-item">EXHIBITION</li>
-              <li class="site-header__menu-item">INDEX</li>
-              <li class="site-header__menu-item">ARCHIVE</li>
-            </ul>
-          </nav>
+            </li>
+            <li class="site-header__menu-item">MAGAZINE</li>
+            <li class="site-header__menu-item">EXHIBITION</li>
+            <li class="site-header__menu-item">INDEX</li>
+            <li class="site-header__menu-item">ARCHIVE</li>
+          </ul>
+        </nav>
 
-          <span class="site-header__search-icon" aria-hidden="true"></span>
+        <span class="site-header__search-icon" aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="contents">
+    <section class="site-section site-section--hero" aria-labelledby="hero-title">
+      <div class="inner-box">
+        <div class="part-box hero__content">
+          <h1 class="visually-hidden" id="hero-title">
+            What If 2025 홍익대학교 산업디자인학과 졸업전시
+          </h1>
+          <p class="hero__year" lang="en">2025.</p>
+          <p class="hero__description" lang="en">
+            Hongik University<br>
+            Industrial Design<br>
+            Degree Show
+          </p>
+          <a class="hero__enter" href="#intro-section" lang="en">Enter</a>
         </div>
       </div>
-    </header>
+    </section>
 
-    <main id="contents">
-      <section
-        class="site-section site-section--hero"
-        aria-labelledby="hero-title"
-      >
-        <div class="inner-box">
-          <div class="part-box hero__content">
-            <h1 class="visually-hidden" id="hero-title">
-              What If 2025 홍익대학교 산업디자인학과 졸업전시
-            </h1>
-            <p class="hero__year" lang="en">2025.</p>
-            <p class="hero__description" lang="en">
-              Hongik University<br>
-              Industrial Design<br>
-              Degree Show
-            </p>
-            <a class="hero__enter" href="#contents" lang="en">Enter</a>
+    <!-- 소개 섹션 (Concept / What If) -->
+    <section class="site-section site-section--intro" id="intro-section" aria-labelledby="intro-title">
+      <div class="inner-box">
+        <!-- 1) 대형 워드마크 What If -->
+        <div class="part-box intro__header-part">
+          <h2 class="intro__wordmark" lang="en">What If</h2>
+        </div>
+
+        <!-- 2) 슬로건 -->
+        <div class="part-box intro__slogan-part">
+          <p class="intro__slogan" lang="ko">
+            <span class="intro__slogan-line">쓸모없음의 쓸모, 무쓸모 디자인</span>
+            <span class="intro__slogan-line">만약에, What If</span>
+          </p>
+        </div>
+
+        <!-- 3) 2분할 콘텐츠 (PC: 25% 제목 / 75% 본문, Mobile/Tablet: 중앙 정렬 세로 적층) -->
+        <div class="part-box intro__content-part">
+          <div class="part-box__item intro__title-col">
+            <h3 class="intro__title" id="intro-title">
+              <span class="intro__title-line">2025년도 홍익대학교</span>
+              <span class="intro__title-line">산업디자인학과 졸업전시</span>
+            </h3>
+          </div>
+
+          <div class="part-box__item intro__body-col">
+            <div class="intro__group intro__group--ko" lang="ko">
+              <p>
+                2025년 홍익대학교 산업디자인과 졸업전시는 실용성만을 판단 기준으로 삼는 기존의 목적 중심 디자인을 탈피하기 위하여 &apos;쓸모없음의 쓸모&apos;를 제시합니다.<br>
+                &apos;What If&apos;란, 그 안에서 무쓸모의 가치를 기반으로 새로운 가능성을 탐구해 나가는 학생들만의 미래 지향적 디자인 태도입니다.
+              </p>
+              <p>
+                우리는 졸업전시회를 통해 &apos;쓸모없는 것&apos; 속에서 학생들만의 창조적 가치를 형성하는 과정으로서<br class="pc-only">
+                &apos;만약에, What If&apos;라는 의문을 제시합니다.
+              </p>
+            </div>
+
+            <div class="intro__group intro__group--en" lang="en">
+              <p>
+                The 2025 Hongik Industrial Design Graduation Exhibition presents &ldquo;the use of uselessness&rdquo; as
+                a way to move beyond conventional purpose-centered design, which has long taken practicality as its only
+                standard of judgment.<br>
+                The &ldquo;use of uselessness&rdquo; suggests the possibility of spontaneou Inaction, accidental and
+                organic, which only students can propose by breaking free from binary ways of thinking.
+              </p>
+              <p>
+                &ldquo;What If&rdquo; represents a future-oriented design attitude, in which students explore new
+                possibilities based on the very value of uselessness.<br>
+                Through this graduation exhibition, we pose the question &ldquo;What If&rdquo;&mdash;a process of
+                discovering creative value within uselessness.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="inner-box">
-        <div class="part-box"></div>
       </div>
-    </footer>
-  </body>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner-box">
+      <div class="part-box"></div>
+    </div>
+  </footer>
+</body>
+
 </html>
