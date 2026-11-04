@@ -568,7 +568,6 @@
     min-block-size: var(--hero-h);
     padding-block: var(--hero-pad-block);
     background-color: var(--color-gray-900);
-    background-image: url("../images/hero_bg.png");
     background-position: var(--hero-desktop-position);
     background-size: cover;
   }
@@ -1444,3 +1443,18 @@
     }
   }
 }
+
+/* ==========================================================
+   [MAIN] particle js
+   ========================================================== */
+.stage {
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
+  canvas {
+    width: min(92vmin, 780px);
+    aspect-ratio: 1;
+    cursor: grab;
+  }
+  canvas:active { cursor: grabbing; }

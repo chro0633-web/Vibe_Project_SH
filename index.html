@@ -41,29 +41,23 @@
               <a class="site-header__menu-link" href="projects.html">PROJECTS</a>
             </li>
             <li class="site-header__menu-item">
-              <a class="site-header__menu-link" href="#contents">MAGAZINE</a>
+              <a class="site-header__menu-link" href="index.html#contents">ARCHIVE</a>
             </li>
             <li class="site-header__menu-item">
-              <a class="site-header__menu-link" href="#contents">EXHIBITION</a>
-            </li>
-            <li class="site-header__menu-item">
-              <a class="site-header__menu-link" href="#contents">INDEX</a>
-            </li>
-            <li class="site-header__menu-item">
-              <a class="site-header__menu-link" href="#contents">ARCHIVE</a>
+              <a class="site-header__menu-link" href="index.html#contents">CONTACT</a>
             </li>
           </ul>
         </nav>
 
-        <button class="site-header__search-toggle" type="button" aria-label="프로젝트 검색 열기"
-          aria-expanded="false" aria-controls="site-search-panel" data-search-toggle>
+        <button class="site-header__search-toggle" type="button" aria-label="프로젝트 검색 열기" aria-expanded="false"
+          aria-controls="site-search-panel" data-search-toggle>
           <img class="site-header__search-icon" src="images/search.svg" alt="" width="40" height="40">
           <span class="site-header__search-close-icon" aria-hidden="true"></span>
         </button>
       </div>
 
-      <div class="site-header__search-panel" id="site-search-panel"
-        aria-labelledby="site-search-title" aria-hidden="true" inert>
+      <div class="site-header__search-panel" id="site-search-panel" aria-labelledby="site-search-title"
+        aria-hidden="true" inert>
         <div class="site-header__search-field">
           <p class="site-header__search-title" id="site-search-title" lang="en">
             Search for project name
@@ -77,11 +71,15 @@
   <main id="contents">
     <section class="site-section site-section--hero" aria-labelledby="hero-title">
       <div class="inner-box">
+        
         <div class="part-box hero__content">
           <h1 class="visually-hidden" id="hero-title">
             What If 2025 홍익대학교 산업디자인학과 졸업전시
           </h1>
           <p class="hero__year" lang="en">2026.</p>
+          <div class="stage">
+          <canvas id="sphere" aria-label="3D particle sphere" role="img"></canvas>
+        </div>
           <p class="hero__description" lang="en">
             Hongik University<br>
             Industrial Design<br>
@@ -89,6 +87,7 @@
           </p>
           <a class="hero__enter" href="#intro-section" lang="en">Enter</a>
         </div>
+        
       </div>
     </section>
 
@@ -150,11 +149,7 @@
     </section>
 
     <!-- 세번째 파트: 작업물 소개 프로젝트 슬라이더 섹션 -->
-    <section
-      class="site-section site-section--projects"
-      id="projects-section"
-      aria-labelledby="projects-title"
-    >
+    <section class="site-section site-section--projects" id="projects-section" aria-labelledby="projects-title">
       <div class="inner-box">
         <!-- 1) 헤더 파티션 (Projects) -->
         <div class="part-box projects__header-part">
@@ -163,69 +158,27 @@
 
         <!-- 2) 슬라이더 파티션 -->
         <div class="part-box projects__slider-part">
-          <div
-            class="projects-slider"
-            data-projects-slider
-            role="region"
-            aria-label="프로젝트 썸네일 슬라이드"
-            aria-roledescription="carousel"
-            tabindex="0"
-          >
+          <div class="projects-slider" data-projects-slider role="region" aria-label="프로젝트 썸네일 슬라이드"
+            aria-roledescription="carousel" tabindex="0">
             <div class="projects-slider__viewport">
               <ul class="projects-slider__track" data-slider-track>
                 <li class="projects-slider__item" data-slide-index="0">
-                  <img
-                    src="images/thumb-01.png"
-                    alt="Project 1"
-                    loading="lazy"
-                    width="1000"
-                    height="1000"
-                  >
+                  <img src="images/thumb-01.png" alt="Project 1" loading="lazy" width="1000" height="1000">
                 </li>
                 <li class="projects-slider__item" data-slide-index="1">
-                  <img
-                    src="images/thumb-02.jpg"
-                    alt="Project 2"
-                    loading="lazy"
-                    width="1000"
-                    height="1000"
-                  >
+                  <img src="images/thumb-02.jpg" alt="Project 2" loading="lazy" width="1000" height="1000">
                 </li>
                 <li class="projects-slider__item" data-slide-index="2">
-                  <img
-                    src="images/thumb-03.png"
-                    alt="Project 3"
-                    loading="lazy"
-                    width="1000"
-                    height="1000"
-                  >
+                  <img src="images/thumb-03.png" alt="Project 3" loading="lazy" width="1000" height="1000">
                 </li>
                 <li class="projects-slider__item" data-slide-index="3">
-                  <img
-                    src="images/thumb-04.png"
-                    alt="Project 4"
-                    loading="lazy"
-                    width="1000"
-                    height="1000"
-                  >
+                  <img src="images/thumb-04.png" alt="Project 4" loading="lazy" width="1000" height="1000">
                 </li>
                 <li class="projects-slider__item" data-slide-index="4">
-                  <img
-                    src="images/thumb-05.png"
-                    alt="Project 5"
-                    loading="lazy"
-                    width="1500"
-                    height="1500"
-                  >
+                  <img src="images/thumb-05.png" alt="Project 5" loading="lazy" width="1500" height="1500">
                 </li>
                 <li class="projects-slider__item" data-slide-index="5">
-                  <img
-                    src="images/thumb-06.png"
-                    alt="Project 6"
-                    loading="lazy"
-                    width="1000"
-                    height="1000"
-                  >
+                  <img src="images/thumb-06.png" alt="Project 6" loading="lazy" width="1000" height="1000">
                 </li>
               </ul>
             </div>
@@ -277,26 +230,11 @@
 
         <!-- 3) 데스크탑 우측 SNS 링크 (Instagram) -->
         <div class="site-footer__sns">
-          <a
-            class="site-footer__sns-link"
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram (새 창 열림)"
-          >
-            <svg
-              class="site-footer__sns-icon"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-              focusable="false"
-            >
+          <a class="site-footer__sns-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram (새 창 열림)">
+            <svg class="site-footer__sns-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              focusable="false">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
