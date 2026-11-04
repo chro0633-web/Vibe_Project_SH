@@ -49,6 +49,10 @@
     --fs-body-ko: 1rem;
     --fs-body-en: 0.875rem;
 
+    /* Type Scale - Projects & Buttons (spec-kit/Agents.md S4.3) */
+    --fs-section-title: 2.1875rem; /* 35px */
+    --fs-btn: 1.125rem; /* 18px */
+
     /* Line Heights */
     --line-body: 1.5;
     --line-brand: 0.9;
@@ -80,6 +84,14 @@
     --intro-bg-size: 100% auto;
     --intro-bg-position: center 10%;
 
+    /* Projects Slider Tokens (spec-kit/Agents.md PART S3.4) */
+    --card-size: 15rem; /* 240px (Mobile) */
+    --card-gap: 1.25rem; /* 20px */
+    --btn-w: 10rem; /* 160px (Mobile) */
+    --btn-h: 3.125rem; /* 50px (Mobile) */
+    --projects-pad-block: clamp(3.5rem, 6vw, 6rem);
+    --projects-slider-gap: clamp(2rem, 4vw, 3.5rem);
+
     /* Radius & Effects (spec-kit/Agents.md PART S3.5) */
     --radius-pill: 3.125rem; /* 50px */
     --focus-outline: 2px;
@@ -102,10 +114,25 @@
     --icon-stroke: 2px;
     --icon-handle-size: 0.375rem;
     --icon-handle-offset: 0.625rem;
-    --search-icon-size: 1.125rem;
-    --search-icon-offset: 0.625rem;
-    --search-handle-size: 0.5rem;
-    --search-handle-offset: 1.625rem;
+    --search-button-size: calc(var(--fs-brand) * var(--line-brand));
+    --search-icon-size: 2.5rem;
+    --search-icon-size-mobile: 1.875rem;
+    --search-close-size: 1.125rem;
+    --search-close-stroke: var(--icon-stroke);
+    --search-panel-pad-block-start: 1rem;
+    --search-panel-pad-block-end: clamp(2rem, 3vw, 2.5rem);
+    --search-field-height: 3.5rem;
+    --search-tags-gap: 0.625rem;
+    --search-tags-margin-block-start: 1.375rem;
+    --search-tag-pad-block: 0.25rem;
+    --search-tag-pad-inline: 0.5625rem;
+    --search-field-icon-size: 1.125rem;
+    --search-field-icon-stroke: var(--icon-stroke);
+    --search-field-icon-offset: 0.625rem;
+    --search-field-handle-size: 0.5rem;
+    --search-field-handle-offset: 0.75rem;
+    --fs-search-tag: 0.875rem;
+    --search-panel-duration: 300ms;
     --menu-toggle-size: 2.75rem;
     --menu-line-size: 1.875rem;
     --menu-line-height: 0.1875rem;
@@ -123,6 +150,14 @@
     --menu-panel-text: var(--color-gray-900);
     --menu-item-border: var(--color-gray-400);
     --menu-panel-duration: 300ms;
+
+    /* Footer Tokens */
+    --footer-pad-block: clamp(2.25rem, 3.5vw, 3.75rem);
+    --footer-nav-gap: clamp(1.25rem, 2vw, 2.25rem);
+    --footer-contact-gap: 0.375rem;
+    --footer-dt-min-w: 4.5rem;
+    --fs-footer: 0.8125rem;
+    --footer-sns-size: 2.75rem;
 
     /* Hero Background Positions */
     --hero-desktop-position: center center;
@@ -150,6 +185,10 @@
       --fs-intro-title: 1.5625rem; /* 25px */
       --fs-body-ko: 1.4375rem; /* 23px */
       --fs-body-en: 1.1875rem; /* 19px */
+      --card-size: 20rem; /* 320px */
+      --btn-w: 13.9375rem; /* 223px */
+      --btn-h: 4.4375rem; /* 71px */
+      --fs-btn: 1.5625rem; /* 25px */
     }
   }
 
@@ -159,6 +198,7 @@
       --fs-intro-title: clamp(1.375rem, 1.6vw, 2.5rem);
       --fs-body-ko: clamp(1.25rem, 1.4vw, 1.4375rem);
       --fs-body-en: clamp(0.875rem, 1.1vw, 1.0625rem);
+      --card-size: 23.625rem; /* 378px */
     }
   }
 }

@@ -5,10 +5,55 @@
 
 ## 마지막 업데이트
 
-- 날짜: 2026-11-03
-- 작업: #intro-section 배경 이미지 가로 100% 채움 수정
+- 날짜: 2026-11-04
+- 작업: 푸터(Footer) 구현 (데스크톱 / 태블릿·모바일 반응형)
 
-## 2026-11-03 #intro-section 배경 이미지 가로 100% 채움
+## 2026-11-04 푸터(Footer) 구현
+
+- `<footer class="site-footer">` 내에 3단 박스 구조(`겉박스 > .inner-box > .part-box`)를 준수하여 푸터 마크업 및 스타일링을 구현했다.
+- 디자인 토큰 시스템 반영:
+  - 배경색: 프로젝트 지정 기본 배경색 `var(--color-bg)` (`#f4f5fb`)
+  - 텍스트색: 프로젝트 지정 기본 본문색 `var(--color-text)` (`#1b1b1c`)
+  - 포인트 호버: `var(--color-accent)` (`#0a28ff`)
+  - 토큰 추가: `--footer-pad-block`, `--footer-nav-gap`, `--footer-contact-gap`, `--footer-dt-min-w`, `--fs-footer`, `--footer-sns-size`
+- 데스크톱 (PC: `min-width: 1400px`):
+  1. 좌측 파티션: 푸터 메뉴 (`PROJECTS`, `EXHIBITION`, `INDEX`, `ARCHIVE`) 링크 목록
+  2. 중앙 파티션: 요청된 연락처 정보 (`Tel. 010-8726-9670`, `E-mail. chro0633@gmail.com`)를 시맨틱 `<dl>`(`<dt>`, `<dd>`)로 구성하고 `tel:`, `mailto:` 링크 적용 및 라벨 기준 열 정렬
+  3. 우측 파티션: 원형 테두리 내 인스타그램 SVG SNS 버튼 (우측 'hid' 로고는 요청에 따라 제외)
+- 태블릿 및 모바일 (`max-width: 1399px`):
+  - 시안 `004_m.png`에 맞춰 좌측 메뉴 및 SNS 버튼을 숨기고, 좌측 정렬된 연락처 2줄 정보만 깔끔하게 노출하도록 구현
+- 웹 접근성 준수:
+  - 시맨틱 마크업: `<nav aria-label="푸터 메뉴">`, `<dl>`, `<dt>`, `<dd>`, SVG `aria-hidden="true"`
+  - SNS 새 창 링크: `target="_blank"`, `rel="noopener noreferrer"`, `aria-label="Instagram (새 창 열림)"`
+  - 키보드 포커스 링(`:focus-visible`) 및 `prefers-reduced-motion` 모션 감쇠 대응
+
+## 2026-11-04 세번째 파트 Projects 슬라이더 구현
+
+- `#intro-section`의 형제 섹션으로 `<section class="site-section site-section--projects" id="projects-section" aria-labelledby="projects-title">`를 구현했다.
+- 3단 박스 구조(`겉박스 > .inner-box > .part-box`)를 준수하여:
+  1. 헤더 파티션: `Projects` 영문 타이틀 (`h2.projects__title`)
+  2. 슬라이더 파티션: 무한 루프 캐러셀 트랙 및 6개 썸네일 카드(`images/thumb-01.png` ~ `thumb-06.png`)
+  3. 하단 CTA 파티션: 규약 및 시안에 맞춘 알약형 `Enter` 버튼 (`a.projects__btn`)
+- 슬라이더 기능 요구사항 반영 (`js/modules/projects-slider.js`):
+  1. 중앙 활성 카드(`.is-active`)는 100% 크기(`scale(1)`) 및 100% 명도/불투명도(`brightness(1)`, `opacity: 1`), 은은한 그림자로 강조.
+  2. 양 옆의 비활성 카드는 축소(`scale(0.85)`) 및 명도/불투명도 저하(`brightness(0.35)`, `opacity: 0.5`) 처리.
+  3. 가운데 오는 카드는 3초간 멈춘 뒤 다음 카드로 부드럽게 자동 전환(무한 루프 순환).
+  4. 클릭 시 해당 카드가 중앙으로 전환되며, 모바일 터치 스와이프 및 데스크톱 마우스 드래그 동작 지원.
+  5. 마우스 호버 시 자동 슬라이드 일시정지, 키보드 좌우 화살표 탐색 지원.
+
+## 2026-11-04 검색 패널 및 헤더 돋보기 다듬기
+
+- 패널의 고정 높이를 없애고 위·아래 여백과 태그를 포함한 콘텐츠 높이에 맞춰 늘어나도록 조정했다. 입력 필드를 제거하고 `Search for project name`을 제목 텍스트로 표시한다.
+- 첫째 줄 태그 8개는 `js/main.js`의 `searchTagNames` 배열에서 렌더링하도록 유지했다. 헤더 돋보기는 `images/search.svg`를 사용하고 회색(`#808187`), 40×40px로 표시한다.
+- 모바일에서는 같은 SVG를 30×30px로 표시하고 흰색으로 반전한다.
+- 다시 클릭하거나 Escape를 누르면 닫히며, `aria-expanded`, `aria-hidden`, `inert`와 포커스를 동기화한다.
+- 1687px/1399px/390px 뷰포트에서 패널 크기와 가로 넘침을 확인했다. 태그를 추가하면 패널 높이가 증가한다. 입력 요소가 없고 Escape 닫기도 동작한다.
+
+## 2026-11-04 태블릿 전환 시 메뉴 슬라이드 깜빡임 수정
+
+- 메뉴 슬라이드 전환을 햄버거 메뉴를 처음 클릭한 뒤에만 활성화하고, 데스크톱/태블릿 경계가 바뀌면 전환 상태를 초기화해 닫힌 패널이 반응형 전환 때문에 애니메이션되지 않도록 했다.
+
+## 2026-11-03 #intro-section 배경 이미지 가로 100% 채움 수정
 
 - `.site-section--intro`의 `background-size`를 고정 상한(`min(100%, 1400px)`)에서 `var(--intro-bg-size, 100% auto)`로 변경하여, 화면 크기 변화에 따라 배경 이미지가 항상 가로 100%로 꽉 차도록 수정했다.
 - PC 미디어쿼리(`min-width: 1400px`)의 `background-size: min(90%, 1400px) auto;` 오버라이드를 제거하여 전 해상도에서 가로 100%를 일관되게 유지하도록 했다.
