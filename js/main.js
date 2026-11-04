@@ -1,4 +1,5 @@
 import { initProjectsSlider } from './modules/projects-slider.js';
+import { initProjectsFilter } from './modules/projects-filter.js';
 
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const siteHeaderLayout = document.querySelector('.site-header__layout');
@@ -10,14 +11,11 @@ const searchTagList = document.querySelector('[data-search-tags]');
 const desktopNavigation = window.matchMedia('(min-width: 1400px)');
 
 const searchTagNames = [
+  'GRAPHIC',
   'AI',
-  'AUTOMOTIVE EXTERIOR',
-  'AUTOMOTIVE INTERIOR',
-  'AUTONOMOUS DRIVING',
+  'VIBE CODING',
   'BX',
-  'CRAFTS',
-  'ELECTRONIC DEVICE',
-  'EXHIBITION',
+  'etc.'
 ];
 
 if (searchTagList) {
@@ -112,3 +110,4 @@ document.addEventListener('keydown', (event) => {
 });
 
 initProjectsSlider();
+initProjectsFilter();

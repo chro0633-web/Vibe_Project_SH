@@ -151,6 +151,13 @@
     --menu-item-border: var(--color-gray-400);
     --menu-panel-duration: 300ms;
 
+    /* Subpage & Projects Grid Tokens */
+    --projects-grid-gap: clamp(0.625rem, 1vw, 1.25rem);
+    --category-gap: clamp(1.25rem, 3vw, 2.75rem);
+    --category-pad-block: clamp(1rem, 2vw, 1.75rem);
+    --projects-category-pad-block: 0.65rem;
+    --fs-category: clamp(0.875rem, 1vw, 1.0625rem);
+
     /* Footer Tokens */
     --footer-pad-block: clamp(2.25rem, 3.5vw, 3.75rem);
     --footer-nav-gap: clamp(1.25rem, 2vw, 2.25rem);

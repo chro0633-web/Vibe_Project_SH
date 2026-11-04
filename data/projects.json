@@ -1,0 +1,72 @@
+[
+  {
+    "id": 10,
+    "title": "Alfred Companion Humanoid for the Future Home",
+    "author": "Youngjoon Bahng",
+    "category": "Product",
+    "thumbnail": "path/to/img10.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Mercedes Vision NEURO Submerssive Luxury",
+    "author": "Haesol Ma",
+    "category": "Mobility",
+    "thumbnail": "path/to/img11.jpg"
+  },
+  {
+    "id": 12,
+    "title": "SOUZ Korean Wellness Retreat",
+    "author": "Jagyeong Kim, Hanbom Jang",
+    "category": "Spatial",
+    "thumbnail": "path/to/img12.jpg"
+  },
+  {
+    "id": 13,
+    "title": "bollo Active-Aging XR Platform",
+    "author": "Minseo Kang, Yoonjung Jang",
+    "category": "Interaction",
+    "thumbnail": "path/to/img13.jpg"
+  },
+  {
+    "id": 14,
+    "title": "EDEN AI Home Ecosystem",
+    "author": "Dohyun Park, Seokhyun Ahn",
+    "category": "Product",
+    "thumbnail": "path/to/img14.jpg"
+  },
+  {
+    "id": 15,
+    "title": "MINI PLAYGROUND Playful Interactive Mobility",
+    "author": "Yoonpyo Hong",
+    "category": "Mobility",
+    "thumbnail": "path/to/img15.jpg"
+  },
+  {
+    "id": 16,
+    "title": "ROOT Future Camping Solution",
+    "author": "El jyidi Chaimae, Sion Lee, Wonjeong Park",
+    "category": "Product",
+    "thumbnail": "path/to/img16.jpg"
+  },
+  {
+    "id": 17,
+    "title": "bubblin' Seoul Hangout AR Service",
+    "author": "Hyunmin Kim",
+    "category": "Interaction",
+    "thumbnail": "path/to/img17.jpg"
+  },
+  {
+    "id": 18,
+    "title": "tonttu.U the echo remains",
+    "author": "Minsol Kim",
+    "category": "Product",
+    "thumbnail": "path/to/img18.jpg"
+  },
+  {
+    "id": 19,
+    "title": "Lunaris Overcoming weightlessness",
+    "author": "Jaewoong Lee, Junhong Yang",
+    "category": "Product",
+    "thumbnail": "path/to/img19.jpg"
+  }
+]
