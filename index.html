@@ -71,23 +71,28 @@
   <main id="contents">
     <section class="site-section site-section--hero" aria-labelledby="hero-title">
       <div class="inner-box">
-        
+        <canvas id="bg"></canvas>
+        <canvas id="sphere" aria-label="3D particle sphere" role="img"></canvas>
+
         <div class="part-box hero__content">
           <h1 class="visually-hidden" id="hero-title">
             What If 2025 홍익대학교 산업디자인학과 졸업전시
           </h1>
-          <p class="hero__year" lang="en">2026.</p>
-          <div class="stage">
-          <canvas id="sphere" aria-label="3D particle sphere" role="img"></canvas>
-        </div>
+          <!-- <p class="hero__year" lang="en">2026.</p> -->
           <p class="hero__description" lang="en">
             Hongik University<br>
             Industrial Design<br>
             Degree Show
           </p>
-          <a class="hero__enter" href="#intro-section" lang="en">Enter</a>
+          <!-- <a class="hero__enter" href="#intro-section" lang="en">Enter</a> -->
         </div>
-        
+
+        <a class="hero__scroll-link" href="#intro-section" lang="en" aria-label="Scroll to introduction">
+          <span class="hero__scroll-indicator" aria-hidden="true">
+            <span class="hero__scroll-glint"></span>
+          </span>
+          <span class="hero__scroll-label">SCROLL</span>
+        </a>
       </div>
     </section>
 
