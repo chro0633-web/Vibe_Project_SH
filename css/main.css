@@ -708,7 +708,6 @@
     }
 
     .site-section--hero {
-      background-image: url("../images/hero_bg_m.jpg");
       background-position: var(--hero-mobile-position);
     }
 

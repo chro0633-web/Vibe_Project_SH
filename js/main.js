@@ -142,11 +142,11 @@ initProjectsFilter();
     fadeStrength: 0.92,   // 최대 투명 정도 (1이면 완전히 사라짐)
  
     // 내부 코어: 중심으로 갈수록 촘촘하고, 껍데기와 따로 회전/변형
-    coreRadius: 5,      // 코어 크기 (바깥 구체 대비)
-    coreDensity: 5,     // 클수록 중심에 더 집약됨
+    coreRadius: 20,      // 코어 크기 (바깥 구체 대비)
+    coreDensity: 7,     // 클수록 중심에 더 집약됨
     coreSpin: 1.7,        // 껍데기 대비 회전 배율 (반대 방향)
-    coreMorph: 0.7,       // 코어 변형 강도 (껍데기와 별개 타이밍)
-    coreSize: 0.85,       // 코어 입자 크기 배율
+    coreMorph: 2,       // 코어 변형 강도 (껍데기와 별개 타이밍)
+    coreSize: 1,       // 코어 입자 크기 배율
  
     // 마우스: 범위 안 파티클이 커서 쪽으로 은은하게 끌려옴
     mouseRadius: 0.16,
@@ -155,7 +155,7 @@ initProjectsFilter();
     cursorLag: 0.10,
  
     // 불규칙 변형 후 원형 복귀
-    morphAmount: 0.55,
+    morphAmount: 0.4,
     morphSpeed: 1.0,
   };
  
