@@ -1,5 +1,6 @@
 import { initProjectsSlider } from './modules/projects-slider.js';
 import { initProjectsFilter } from './modules/projects-filter.js';
+import { initProjectsModal } from './modules/projects-modal.js';
 
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const siteHeaderLayout = document.querySelector('.site-header__layout');
@@ -111,6 +112,7 @@ document.addEventListener('keydown', (event) => {
 
 initProjectsSlider();
 initProjectsFilter();
+initProjectsModal();
 
 
 
@@ -220,6 +222,7 @@ const smoothstep = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t
 (() => {
   const B = CFG.bg;
   const canvas = document.getElementById('bg');
+  if (!canvas) return;
   const gl = canvas.getContext('webgl', { antialias: false, alpha: false });
   if (!gl) return;
  
@@ -342,6 +345,7 @@ const smoothstep = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t
 (() => {
   const C = CFG.sphere, L = CFG.lines, GL = CFG.glow, D = CFG.dust;
   const canvas = document.getElementById('sphere');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
  
   // ── 상태 ────────────────────────────────────────────

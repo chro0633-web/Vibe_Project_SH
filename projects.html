@@ -216,6 +216,28 @@
     </section>
   </main>
 
+  <dialog class="project-modal" data-project-modal aria-labelledby="project-modal-title">
+    <div class="project-modal__panel">
+      <header class="project-modal__header">
+        <button class="project-modal__close" type="button" aria-label="프로젝트 상세 닫기" data-project-modal-close>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </header>
+      <div class="project-modal__scroll" data-project-modal-scroll>
+        <div class="project-modal__content">
+          <img class="project-modal__image" src="images/test-img.png" alt="" decoding="async" data-project-modal-image>
+          <div class="project-modal__text">
+            <h2 class="project-modal__title" id="project-modal-title" data-project-modal-title></h2>
+            <p class="project-modal__subtitle" data-project-modal-subtitle></p>
+            <div class="project-modal__body" data-project-modal-body></div>
+          </div>
+          <div class="project-modal__placeholder" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <footer class="site-footer">
     <div class="inner-box">
       <div class="part-box site-footer__layout">
