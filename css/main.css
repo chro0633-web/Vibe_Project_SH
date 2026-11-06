@@ -1682,6 +1682,7 @@
   inline-size: min(100%, 66rem);
   margin: 0 auto;
   padding-block: 0 clamp(2rem, 6vw, 5rem);
+  padding-right: 5px;
 }
 
 .project-modal__image,

@@ -1,10 +1,4 @@
 /**
- * ★ 데이터 소스 전환 지점 (마이그레이션 시 이 파일만 수정) ★
- * UI는 오직 이 파일의 postService만 import 한다.
- *
- * [현재] LocalStorage Mock
+ * 게시글은 Firestore에 저장하고 첨부파일 데이터는 fileService의 LocalStorage를 사용한다.
  */
-export { postMockService as postService } from './mock/postMockService.js';
-
-// [Firebase Firestore 전환 시]
-// export { postFirebaseService as postService } from './firebase/postFirebaseService.js';
+export { postFirebaseService as postService } from './firebase/postFirebaseService.js';
