@@ -20,6 +20,30 @@
     overflow: hidden;
   }
 
+  .auth-page-header__layout {
+    align-items: center;
+    justify-content: space-between;
+    min-block-size: 5rem;
+  }
+  .auth-page-header .site-header__brand {
+    color: var(--color-text);
+  }
+  .auth-page-footer__layout {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding-block: 1.5rem;
+    font-size: 0.875rem;
+  }
+  .auth-page-footer__layout a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .auth-page-footer__layout a:hover {
+    color: var(--notice-accent);
+  }
+
   .notice-main {
     background: var(--color-white);
     min-block-size: 70vh;
@@ -55,6 +79,89 @@
   .notice-hero p {
     margin-block-start: 0.6rem;
     color: var(--color-text-meta);
+  }
+
+  .notice-account {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    inline-size: min(100%, 80rem);
+    margin: 0 auto 1.5rem;
+    text-align: end;
+  }
+  .notice-account__message {
+    color: var(--color-text-meta);
+    font-size: 0.875rem;
+  }
+  .notice-account [hidden] {
+    display: none;
+  }
+
+  .notice-auth-page {
+    inline-size: min(100%, 38rem);
+    margin-inline: auto;
+  }
+  .notice-auth-section {
+    padding-block: 1.75rem 2rem;
+  }
+  .notice-auth-section__title {
+    margin-block-end: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .notice-auth-form {
+    display: grid;
+    gap: 1rem;
+  }
+  .notice-auth-form__field {
+    display: grid;
+    gap: 0.4rem;
+    min-inline-size: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .notice-auth-username {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem;
+  }
+  .notice-auth-hint,
+  .notice-auth-status {
+    color: var(--color-text-meta);
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+  .notice-auth-status[data-available="true"] {
+    color: #177245;
+  }
+  .notice-auth-status[data-available="false"] {
+    color: var(--notice-danger);
+  }
+  .notice-auth-error {
+    color: var(--notice-danger);
+    font-size: 0.875rem;
+  }
+  .notice-auth-form > .notice-btn {
+    justify-self: end;
+    min-inline-size: 8rem;
+  }
+  .notice-auth-switch {
+    margin-block-start: 1.25rem;
+    padding-block-start: 1rem;
+    border-block-start: 1px solid var(--notice-border);
+    color: var(--color-text-meta);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  .notice-auth-switch a {
+    color: var(--notice-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .notice-auth-switch a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .notice-state {
@@ -781,6 +888,18 @@
 
   /* ---------- 반응형 ---------- */
   @media (max-width: 812px) {
+    .notice-account {
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-block-end: 1.25rem;
+    }
+    .notice-auth-username {
+      grid-template-columns: 1fr;
+    }
+    .notice-auth-username .notice-btn {
+      justify-self: start;
+    }
+
     .notice-toolbar {
       flex-direction: column;
       align-items: stretch;

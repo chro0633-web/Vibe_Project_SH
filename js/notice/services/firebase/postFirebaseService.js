@@ -3,11 +3,12 @@ import {
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 import { db } from './firebaseConfig.js';
 import { fileService } from '../fileService.js';
-import { CURRENT_USER, PAGE_SIZE } from '../../config.js';
+import { PAGE_SIZE } from '../../config.js';
+import { auth } from './firebaseConfig.js';
 
 const COL = 'notices';
 const toPost = (d) => ({ id: d.id, ...d.data() });
-const bookmarkRef = (id) => doc(db, 'users', CURRENT_USER.id, 'bookmarks', id);
+const bookmarkRef = (id) => auth.currentUser ? doc(db, 'users', auth.currentUser.uid, 'bookmarks', id) : null;
 
 export const postFirebaseService = {
   async list({ keyword = '', page = 1, pageSize = PAGE_SIZE } = {}) {
@@ -53,7 +54,6 @@ export const postFirebaseService = {
     if (!post) return;
     await deleteDoc(doc(db, COL, id));
     await fileService.removeMany([...(post.imageIds || []), ...post.attachments.map((f) => f.id)]);
-    await deleteDoc(bookmarkRef(id));
   },
 
   async increaseViewCount(id) {
@@ -61,12 +61,15 @@ export const postFirebaseService = {
   },
 
   async isBookmarked(id) {
-    return (await getDoc(bookmarkRef(id))).exists();
+    const ref = bookmarkRef(id);
+    return ref ? (await getDoc(ref)).exists() : false;
   },
 
   async toggleBookmark(id) {
-    if (await this.isBookmarked(id)) { await deleteDoc(bookmarkRef(id)); return false; }
-    await setDoc(bookmarkRef(id), { postId: id, createdAt: new Date().toISOString() });
+    const ref = bookmarkRef(id);
+    if (!ref) throw new Error('북마크를 사용하려면 로그인해주세요.');
+    if (await this.isBookmarked(id)) { await deleteDoc(ref); return false; }
+    await setDoc(ref, { postId: id, createdAt: new Date().toISOString() });
     return true;
   },
 };

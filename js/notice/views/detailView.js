@@ -7,7 +7,7 @@ import { hydrateImages } from '../ui/images.js';
 import { sanitizeHtml } from '../utils/sanitize.js';
 import { esc, formatDate, formatSize } from '../utils/format.js';
 
-export function mountDetail(root, { id, navigate, listHref }) {
+export function mountDetail(root, { id, navigate, listHref, session }) {
   let disposed = false;
   root.innerHTML = `<a class="notice-back" href="${listHref}">${icons.prev}<span>목록으로 돌아가기</span></a><p class="notice-state">불러오는 중...</p>`;
 
@@ -44,7 +44,7 @@ export function mountDetail(root, { id, navigate, listHref }) {
           </div>
           <div class="notice-detail__icons">
             <button type="button" class="notice-icon-btn" data-share aria-label="링크 복사">${icons.share}</button>
-            <button type="button" class="notice-icon-btn ${marked ? 'is-on' : ''}" data-bookmark aria-pressed="${marked}" aria-label="북마크">${marked ? icons.bookmarkFilled : icons.bookmark}</button>
+            ${session.user ? `<button type="button" class="notice-icon-btn ${marked ? 'is-on' : ''}" data-bookmark aria-pressed="${marked}" aria-label="북마크">${marked ? icons.bookmarkFilled : icons.bookmark}</button>` : ''}
           </div>
         </header>
         <div class="notice-detail__body" data-body></div>
@@ -52,10 +52,10 @@ export function mountDetail(root, { id, navigate, listHref }) {
           <section class="notice-files" aria-label="첨부파일"><h3>첨부파일</h3><ul>
             ${post.attachments.map((f) => `<li><a href="#" data-file="${esc(f.id)}" data-name="${esc(f.name)}">${icons.file}<span>${esc(f.name)}</span><em>(${formatSize(f.size)})</em></a></li>`).join('')}
           </ul></section>` : ''}
-        <div class="notice-detail__actions">
+        ${session.isAdmin ? `<div class="notice-detail__actions">
           <a class="notice-btn notice-btn--ghost notice-btn--sm" href="#/edit/${esc(post.id)}">수정</a>
           <button type="button" class="notice-btn notice-btn--danger-ghost notice-btn--sm" data-delete>삭제</button>
-        </div>
+        </div>` : ''}
         <nav class="notice-pager" aria-label="이전글 다음글">${pager(newer, 'prev')}<span class="notice-pager__divider"></span>${pager(older, 'next')}</nav>
       </article>`;
 
@@ -68,18 +68,18 @@ export function mountDetail(root, { id, navigate, listHref }) {
       catch { toast('링크를 복사하지 못했습니다.', 'error'); }
     };
     const bm = root.querySelector('[data-bookmark]');
-    bm.onclick = async () => {
+    bm?.addEventListener('click', async () => {
       try {
         const on = await postService.toggleBookmark(post.id);
         bm.classList.toggle('is-on', on); bm.setAttribute('aria-pressed', on); bm.innerHTML = on ? icons.bookmarkFilled : icons.bookmark;
         toast(on ? '북마크에 저장했습니다.' : '북마크를 해제했습니다.');
       } catch { toast('북마크를 변경하지 못했습니다.', 'error'); }
-    };
-    root.querySelector('[data-delete]').onclick = async () => {
+    });
+    root.querySelector('[data-delete]')?.addEventListener('click', async () => {
       if (!await confirmDialog({ message: '이 게시글을 삭제하시겠습니까? 삭제 후에는 복구할 수 없습니다.', confirmText: '삭제', danger: true })) return;
       try { await postService.delete(post.id); toast('삭제되었습니다.'); navigate(listHref); }
       catch { toast('삭제하지 못했습니다.', 'error'); }
-    };
+    });
     root.querySelectorAll('[data-file]').forEach((a) => a.addEventListener('click', async (e) => {
       e.preventDefault();
       const url = await fileService.getUrl(a.dataset.file);

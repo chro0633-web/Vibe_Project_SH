@@ -6,10 +6,10 @@ import { toast } from '../ui/toast.js';
 import { confirmDialog } from '../ui/dialog.js';
 import { serializeContent, isEmptyContent } from '../utils/sanitize.js';
 import { esc, formatSize } from '../utils/format.js';
-import { CATEGORIES, CURRENT_USER, MAX_FILE_COUNT, MAX_FILE_SIZE } from '../config.js';
+import { CATEGORIES, MAX_FILE_COUNT, MAX_FILE_SIZE } from '../config.js';
 
 /** 글쓰기(mode='write') / 수정(mode='edit') 공용 폼 */
-export function mountForm(root, { mode, id, navigate, listHref }) {
+export function mountForm(root, { mode, id, navigate, listHref, session }) {
   const isEdit = mode === 'edit';
   let disposed = false, saved = false, dirty = false;
   let editor = null;
@@ -149,7 +149,7 @@ export function mountForm(root, { mode, id, navigate, listHref }) {
       const dto = {
         title, category: root.querySelector('#nf-category').value, content, imageIds,
         attachments: [...existing, ...newMetas],
-        author: original?.author || CURRENT_USER,
+        author: original?.author || { id: session.user.uid, name: session.profile?.name || session.user.displayName || '관리자' },
         isPublic: isEdit ? root.querySelector('[name="isPublic"]:checked').value === 'true' : true,
       };
       const post = isEdit ? await postService.update(id, dto) : await postService.create(dto);

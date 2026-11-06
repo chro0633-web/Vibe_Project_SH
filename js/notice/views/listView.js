@@ -12,7 +12,7 @@ const pageWindow = (page, last) => {
   return Array.from({ length: Math.min(size, last) }, (_, i) => start + i);
 };
 
-export function mountList(root, { params, navigate }) {
+export function mountList(root, { params, navigate, session }) {
   let disposed = false;
   const page = Math.max(1, Number(params.get('page')) || 1);
   const keyword = params.get('q') || '';
@@ -27,7 +27,7 @@ export function mountList(root, { params, navigate }) {
           <input id="notice-q" class="notice-search__input" type="search" placeholder="검색어를 입력하세요." value="${esc(keyword)}">
           <button class="notice-search__btn" type="submit" aria-label="검색">${icons.search}</button>
         </form>
-        <a class="notice-btn notice-btn--primary notice-btn--sm" href="#/write">글쓰기</a>
+        ${session.isAdmin ? '<a class="notice-btn notice-btn--primary notice-btn--sm" href="#/write">글쓰기</a>' : ''}
       </div>
     </div>
     <table class="notice-table">

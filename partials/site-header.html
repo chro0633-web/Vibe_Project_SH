@@ -1,0 +1,53 @@
+<header class="site-header" data-site-header>
+  <div class="inner-box">
+    <div class="part-box site-header__layout">
+      <button class="site-header__menu-toggle" type="button" hidden aria-label="메뉴 열기" aria-expanded="false"
+        aria-controls="site-header-navigation" data-menu-toggle>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a class="site-header__brand" href="index.html#contents" aria-label="What If 홈">
+        <span class="site-header__wordmark" lang="en">What If</span>
+        <span class="site-header__school" lang="en">
+          Hongik University<br>
+          Industrial Design<br>
+          Degree Show
+        </span>
+      </a>
+
+      <p class="site-header__mobile-title" lang="en" data-mobile-title hidden></p>
+
+      <nav class="site-header__navigation" id="site-header-navigation" aria-label="주요 메뉴">
+        <ul class="part-box site-header__menu" lang="en">
+          <li class="site-header__menu-item site-header__menu-item--mobile-home" data-nav-item="home">
+            <a class="site-header__menu-link" href="index.html">HOME</a>
+          </li>
+          <li class="site-header__menu-item site-header__menu-item--projects" data-nav-item="projects">
+            <a class="site-header__menu-link" href="projects.html">PROJECTS</a>
+          </li>
+          <li class="site-header__menu-item">
+            <a class="site-header__menu-link" href="index.html#contents">ARCHIVE</a>
+          </li>
+          <li class="site-header__menu-item" data-nav-item="notice">
+            <a class="site-header__menu-link" href="notice.html">NOTICE</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="site-header__search-toggle" type="button" aria-label="프로젝트 검색 열기" aria-expanded="false"
+        aria-controls="site-search-panel" data-search-toggle>
+        <img class="site-header__search-icon" src="images/search.svg" alt="" width="40" height="40">
+        <span class="site-header__search-close-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="site-header__search-panel" id="site-search-panel" aria-labelledby="site-search-title"
+      aria-hidden="true" inert>
+      <div class="site-header__search-field">
+        <p class="site-header__search-title" id="site-search-title" lang="en">Search for project name</p>
+      </div>
+      <ul class="part-box site-header__search-tags" aria-label="프로젝트 태그" data-search-tags></ul>
+    </div>
+  </div>
+</header>

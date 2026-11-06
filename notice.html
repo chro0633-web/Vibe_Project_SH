@@ -10,127 +10,29 @@
   <link rel="stylesheet" href="css/base/tokens.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/notice.css">
+  <script type="module" src="js/modules/site-chrome.js"></script>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/notice/app.js"></script>
 </head>
 
-<body>
+<body data-page="notice">
   <a class="skip-link" href="#notice-view">본문 바로가기</a>
-  <header class="site-header site-header--light">
-    <div class="inner-box">
-      <div class="part-box site-header__layout">
-        <button class="site-header__menu-toggle" type="button" hidden aria-label="메뉴 열기" aria-expanded="false"
-          aria-controls="site-header-navigation" data-menu-toggle>
-          <span></span>
-          <span></span>
-        </button>
-
-        <a class="site-header__brand" href="index.html" aria-label="What If 홈">
-          <span class="site-header__wordmark" lang="en">What If</span>
-          <span class="site-header__school" lang="en">
-            Hongik University<br>
-            Industrial Design<br>
-            Degree Show
-          </span>
-        </a>
-
-        <p class="site-header__mobile-title" lang="en">NOTICE</p>
-
-        <nav class="site-header__navigation" id="site-header-navigation" aria-label="주요 메뉴">
-          <ul class="part-box site-header__menu" lang="en">
-            <li class="site-header__menu-item site-header__menu-item--mobile-home">
-              <a class="site-header__menu-link" href="index.html">HOME</a>
-            </li>
-            <li class="site-header__menu-item site-header__menu-item--projects">
-              <a class="site-header__menu-link" href="projects.html">PROJECTS</a>
-            </li>
-            <li class="site-header__menu-item">
-              <a class="site-header__menu-link" href="index.html#contents">ARCHIVE</a>
-            </li>
-            <li class="site-header__menu-item is-active">
-              <a class="site-header__menu-link" href="notice.html" aria-current="page">CONTACT</a>
-            </li>
-          </ul>
-        </nav>
-
-        <button class="site-header__search-toggle" type="button" aria-label="프로젝트 검색 열기" aria-expanded="false"
-          aria-controls="site-search-panel" data-search-toggle>
-          <img class="site-header__search-icon" src="images/search.svg" alt="" width="40" height="40">
-          <span class="site-header__search-close-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-
-      <div class="site-header__search-panel" id="site-search-panel" aria-labelledby="site-search-title"
-        aria-hidden="true" inert>
-        <div class="site-header__search-field">
-          <p class="site-header__search-title" id="site-search-title" lang="en">
-            Search for project name
-          </p>
-        </div>
-        <ul class="part-box site-header__search-tags" aria-label="프로젝트 태그" data-search-tags></ul>
-      </div>
-    </div>
-  </header>
+  <div data-site-header-slot></div>
 
   <main id="contents" class="notice-main">
     <div class="notice-hero">
+      <div class="notice-account" data-auth-bar aria-live="polite">
+        <p class="notice-account__message" data-auth-message>로그인 상태를 확인하고 있습니다.</p>
+        <a class="notice-btn notice-btn--ghost notice-btn--sm" href="login.html" data-login-link hidden>로그인</a>
+        <button class="notice-btn notice-btn--ghost notice-btn--sm" type="button" data-logout hidden>로그아웃</button>
+      </div>
       <h1 id="notice-title" lang="en">Notice</h1>
       <p id="notice-subtitle">What If의 새로운 소식을 만나보세요.</p>
     </div>
     <div class="notice-wrap" id="notice-view" tabindex="-1"></div>
   </main>
 
-  <footer class="site-footer">
-    <div class="inner-box">
-      <div class="part-box site-footer__layout">
-        <!-- 1) 데스크탑 좌측 메뉴 -->
-        <nav class="site-footer__nav" aria-label="푸터 메뉴">
-          <ul class="site-footer__menu" lang="en">
-            <li class="site-footer__menu-item">
-              <a class="site-footer__menu-link" href="projects.html">PROJECTS</a>
-            </li>
-            <li class="site-footer__menu-item">
-              <a class="site-footer__menu-link" href="index.html">EXHIBITION</a>
-            </li>
-            <li class="site-footer__menu-item">
-              <a class="site-footer__menu-link" href="index.html">INDEX</a>
-            </li>
-            <li class="site-footer__menu-item">
-              <a class="site-footer__menu-link" href="index.html#contents">ARCHIVE</a>
-            </li>
-          </ul>
-        </nav>
-
-        <!-- 2) 연락처 정보 (Tel, E-mail) -->
-        <div class="site-footer__info">
-          <dl class="site-footer__contact" lang="en">
-            <div class="site-footer__contact-row">
-              <dt>Tel.</dt>
-              <dd><a href="tel:010-8726-9670">010-8726-9670</a></dd>
-            </div>
-            <div class="site-footer__contact-row">
-              <dt>E-mail.</dt>
-              <dd><a href="mailto:chro0633@gmail.com">chro0633@gmail.com</a></dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- 3) 데스크탑 우측 SNS 링크 (Instagram) -->
-        <div class="site-footer__sns">
-          <a class="site-footer__sns-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
-            aria-label="Instagram (새 창 열림)">
-            <svg class="site-footer__sns-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
-              focusable="false">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div data-site-footer-slot></div>
 </body>
 
 </html>

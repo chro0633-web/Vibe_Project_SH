@@ -2,16 +2,48 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    function testModeActive() {
-      return request.time < timestamp.date(2026, 12, 6);
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
 
     match /notices/{noticeId} {
-      allow read, write: if testModeActive();
+      allow read: if true;
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['viewCount']) &&
+        request.resource.data.viewCount == resource.data.viewCount + 1
+      );
     }
 
-    match /users/{userId}/bookmarks/{bookmarkId} {
-      allow read, write: if testModeActive();
+    match /usernames/{username} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if signedIn() &&
+        request.resource.data.keys().hasOnly(['uid']) &&
+        request.resource.data.uid == request.auth.uid;
+      allow update, delete: if false;
     }
+
+    match /users/{userId} {
+      allow get: if signedIn() && (request.auth.uid == userId || isAdmin());
+      allow list: if false;
+      allow create: if signedIn() && request.auth.uid == userId &&
+        request.resource.data.keys().hasOnly(['name', 'username', 'email', 'createdAt', 'role']) &&
+        request.resource.data.role == 'user' &&
+        request.resource.data.email == request.auth.token.email &&
+        getAfter(/databases/$(database)/documents/usernames/$(request.resource.data.username)).data.uid == request.auth.uid;
+      allow update, delete: if false;
+
+      match /bookmarks/{bookmarkId} {
+        allow read, write: if signedIn() && request.auth.uid == userId;
+      }
+    }
+
   }
 }

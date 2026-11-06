@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What If 계정을 만듭니다.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Sign Up | What If</title>
+  <link rel="stylesheet" href="css/base/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/notice.css">
+  <script type="module" src="js/modules/site-chrome.js"></script>
+  <script type="module" src="js/notice/auth-page.js"></script>
+</head>
+
+<body data-auth-page="signup" data-page="signup">
+  <a class="skip-link" href="#auth-main">본문 바로가기</a>
+  <div data-site-header-slot></div>
+
+  <main class="notice-main auth-page-main" id="auth-main">
+    <section class="notice-hero">
+      <h1 lang="en">Sign Up</h1>
+      <p>회원 정보를 입력해주세요.</p>
+      <p>본 페이지는 기능 구현에 목적을 뒀으며 입력 데이터는 가상의 데이터를 입력하시기 바랍니다.</p>
+    </section>
+    <section class="notice-wrap" aria-labelledby="signup-title">
+      <div class="notice-auth-page">
+        <section class="notice-auth-section">
+          <h2 class="notice-auth-section__title" id="signup-title">회원가입</h2>
+          <form class="notice-auth-form" data-signup-form>
+            <label class="notice-auth-form__field">
+              <span>이름</span>
+              <input class="notice-input" type="text" name="name" autocomplete="name" maxlength="40" required>
+            </label>
+            <div class="notice-auth-form__field">
+              <label for="auth-username">아이디</label>
+              <div class="notice-auth-username">
+                <input class="notice-input" id="auth-username" type="text" name="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9._-]{3,20}" autocomplete="username" aria-describedby="auth-username-hint auth-username-status" required>
+                <button class="notice-btn notice-btn--ghost notice-btn--sm" type="button" data-check-username>중복 확인</button>
+              </div>
+              <span class="notice-auth-hint" id="auth-username-hint">영문, 숫자, 점, 밑줄, 하이픈 3~20자</span>
+              <span class="notice-auth-status" id="auth-username-status" data-username-status aria-live="polite"></span>
+            </div>
+            <label class="notice-auth-form__field">
+              <span>비밀번호</span>
+              <input class="notice-input" type="password" name="password" minlength="6" autocomplete="new-password" required>
+            </label>
+            <label class="notice-auth-form__field">
+              <span>이메일</span>
+              <input class="notice-input" type="email" name="email" autocomplete="email" required>
+              <span class="notice-auth-hint" id="auth-username-hint">형식에 맞는 가상 이메일을 입력하세요.</span>
+            </label>
+            <p class="notice-auth-error" data-form-error role="alert" hidden></p>
+            <button class="notice-btn notice-btn--primary" type="submit">가입하기</button>
+          </form>
+        </section>
+        <p class="notice-auth-switch">이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer-slot></div>
+</body>
+
+</html>

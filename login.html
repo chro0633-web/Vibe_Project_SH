@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What If 공지사항 계정에 로그인합니다.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Login | What If</title>
+  <link rel="stylesheet" href="css/base/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/notice.css">
+  <script type="module" src="js/modules/site-chrome.js"></script>
+  <script type="module" src="js/notice/auth-page.js"></script>
+</head>
+
+<body data-auth-page="login" data-page="login">
+  <a class="skip-link" href="#auth-main">본문 바로가기</a>
+  <div data-site-header-slot></div>
+
+  <main class="notice-main auth-page-main" id="auth-main">
+    <section class="notice-hero">
+      <h1 lang="en">Login</h1>
+      <p>생성한 계정으로 로그인하세요.</p>
+    </section>
+    <section class="notice-wrap" aria-labelledby="login-title">
+      <div class="notice-auth-page">
+        <section class="notice-auth-section">
+          <h2 class="notice-auth-section__title" id="login-title">로그인</h2>
+          <form class="notice-auth-form" data-login-form>
+            <label class="notice-auth-form__field">
+              <span>이메일</span>
+              <input class="notice-input" type="email" name="email" autocomplete="email" required>
+            </label>
+            <label class="notice-auth-form__field">
+              <span>비밀번호</span>
+              <input class="notice-input" type="password" name="password" autocomplete="current-password" required>
+            </label>
+            <p class="notice-auth-error" data-form-error role="alert" hidden></p>
+            <button class="notice-btn notice-btn--primary" type="submit">로그인</button>
+          </form>
+        </section>
+        <p class="notice-auth-switch">계정이 없으신가요? <a href="signup.html">회원가입</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer-slot></div>
+</body>
+
+</html>

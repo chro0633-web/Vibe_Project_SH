@@ -5,8 +5,19 @@
 
 ## 마지막 업데이트
 
-- 날짜: 2026-11-04
-- 작업: 푸터(Footer) 구현 (데스크톱 / 태블릿·모바일 반응형)
+- 날짜: 2026-11-06
+- 작업: 공지사항 Firebase 로그인·회원가입 및 관리자 권한
+
+## 2026-11-06 공지사항 로그인·회원가입 및 관리자 권한
+
+- Firebase Authentication 이메일/비밀번호 로그인을 추가했다. 회원가입은 이름, 아이디, 비밀번호, 이메일을 받고 아이디 중복 확인을 필수로 한다. 로그인은 이메일과 비밀번호를 사용한다.
+- Notice 상단에 로그인 상태와 사용자 이름 환영 문구를 표시하고, 로그인 후 로그아웃 버튼으로 전환한다. 로그인과 회원가입은 각각 `login.html`, `signup.html`로 분리하고 서로 이동 링크를 제공한다.
+- 회원가입 프로필 및 아이디 인덱스는 Firestore에 저장한다. 사용자 첨부파일은 기존 LocalStorage 방식을 유지한다.
+- 가입 프로필은 `name`, `username`, `email`, `createdAt`, `role` 필드로 저장하며 일반 회원의 역할은 `user`로 고정한다. 관리자는 수동 프로필에 `role: admin`을 설정한다.
+- 게시글 작성·수정·삭제 UI와 라우트는 관리자만 허용한다. `firestore.rules`에서도 `users/{uid}.role == 'admin'`인지 검사한다. 조회수 증가와 개인별 북마크는 별도 규칙으로 유지한다.
+- 관리자 계정은 Firebase Console에서 수동 생성해야 하며 `curr-task/007-파이어 베이스 전환/firebase-auth-setup.md` 절차를 따른다. 요청된 4자리 비밀번호는 Firebase Authentication의 최소 길이보다 짧아 6자 이상 비밀번호를 직접 지정해야 한다.
+- 확인: 수정된 JavaScript의 `node --check` 통과. 브라우저에서 로그인/가입 UI, 모바일 가로 넘침 없음, 콘솔 오류 없음, 비로그인 직접 글쓰기 경로의 로그인 유도를 확인했다.
+- 남은 설정: Firebase Console에서 이메일/비밀번호 공급자 활성화, `firestore.rules` 게시, 관리자 Auth 계정 및 Firestore 문서(`users/{uid}`, `usernames/admin`) 수동 등록.
 
 ## 2026-11-04 푸터(Footer) 구현
 
