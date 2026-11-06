@@ -21,6 +21,108 @@ service cloud.firestore {
       );
     }
 
+    match /qna/{questionId} {
+      allow read: if true;
+
+      allow create: if signedIn() &&
+        request.resource.data.keys().hasOnly([
+          'title', 'category', 'isPublic', 'author', 'isAnswered', 'answeredAt',
+          'viewCount', 'createdAt', 'updatedAt'
+        ]) &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 0 &&
+        request.resource.data.title.size() <= 100 &&
+        request.resource.data.category in ['일반', '디자인', '바이브 코딩', '기타'] &&
+        request.resource.data.isPublic is bool &&
+        request.resource.data.author.keys().hasOnly(['id', 'name']) &&
+        request.resource.data.author.id == request.auth.uid &&
+        request.resource.data.author.name is string &&
+        request.resource.data.createdAt is string &&
+        request.resource.data.updatedAt is string &&
+        request.resource.data.viewCount == 0 &&
+        request.resource.data.isAnswered == false &&
+        request.resource.data.answeredAt == null;
+
+      allow update: if (
+        signedIn() &&
+        resource.data.author.id == request.auth.uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'title', 'category', 'isPublic', 'updatedAt'
+        ]) &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 0 &&
+        request.resource.data.title.size() <= 100 &&
+        request.resource.data.category in ['일반', '디자인', '바이브 코딩', '기타'] &&
+        request.resource.data.isPublic is bool &&
+        request.resource.data.updatedAt is string
+      ) || (
+        isAdmin() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isAnswered', 'answeredAt']) &&
+        request.resource.data.isAnswered == true &&
+        request.resource.data.answeredAt is string &&
+        getAfter(/databases/$(database)/documents/qnaContents/$(questionId)).data.answer.content is string
+      ) || (
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['viewCount']) &&
+        request.resource.data.viewCount == resource.data.viewCount + 1 &&
+        (resource.data.isPublic == true ||
+          (signedIn() && resource.data.author.id == request.auth.uid) ||
+          isAdmin())
+      );
+
+      allow delete: if signedIn() &&
+        resource.data.author.id == request.auth.uid &&
+        !existsAfter(/databases/$(database)/documents/qnaContents/$(questionId));
+    }
+
+    match /qnaContents/{questionId} {
+      function question() {
+        return get(/databases/$(database)/documents/qna/$(questionId));
+      }
+
+      function questionAfterWrite() {
+        return getAfter(/databases/$(database)/documents/qna/$(questionId));
+      }
+
+      allow read: if question().data.isPublic == true ||
+        (signedIn() && question().data.author.id == request.auth.uid) ||
+        isAdmin();
+
+      allow create: if signedIn() &&
+        questionAfterWrite().data.author.id == request.auth.uid &&
+        request.resource.data.keys().hasOnly(['content', 'answer']) &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        request.resource.data.content.size() <= 10000 &&
+        request.resource.data.answer == null;
+
+      allow update: if (
+        signedIn() &&
+        question().data.author.id == request.auth.uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['content']) &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        request.resource.data.content.size() <= 10000
+      ) || (
+        isAdmin() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['answer']) &&
+        request.resource.data.answer is map &&
+        request.resource.data.answer.keys().hasOnly([
+          'content', 'authorId', 'authorName', 'createdAt'
+        ]) &&
+        request.resource.data.answer.content is string &&
+        request.resource.data.answer.content.size() > 0 &&
+        request.resource.data.answer.content.size() <= 10000 &&
+        request.resource.data.answer.authorId == request.auth.uid &&
+        request.resource.data.answer.authorName is string &&
+        request.resource.data.answer.createdAt is string &&
+        questionAfterWrite().data.isAnswered == true
+      );
+
+      allow delete: if signedIn() &&
+        question().data.author.id == request.auth.uid &&
+        !existsAfter(/databases/$(database)/documents/qna/$(questionId));
+    }
+
     match /usernames/{username} {
       allow get: if true;
       allow list: if false;

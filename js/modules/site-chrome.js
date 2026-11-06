@@ -1,6 +1,7 @@
 const pageTitles = {
   projects: 'Projects',
   notice: 'NOTICE',
+  qna: 'Q&A',
   login: 'LOGIN',
   signup: 'SIGN UP',
 };
@@ -37,7 +38,7 @@ if (mobileTitle && pageTitles[page]) {
   mobileTitle.hidden = false;
 }
 
-const activePage = page === 'projects' ? 'projects' : page === 'notice' ? 'notice' : '';
+const activePage = page === 'projects' ? 'projects' : page === 'notice' ? 'notice' : page === 'qna' ? 'qna' : '';
 const activeItem = activePage && header?.querySelector(`[data-nav-item="${activePage}"]`);
 if (activeItem) {
   activeItem.classList.add('is-active');

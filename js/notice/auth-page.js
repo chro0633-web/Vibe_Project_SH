@@ -32,8 +32,11 @@ function bindLoginForm() {
       const session = await authService.getSession(credential.user);
       const requestedReturn = new URLSearchParams(location.search).get('return') || '';
       const isWriteRoute = /^#\/(write|edit\/[^/?#]+)$/.test(requestedReturn);
-      const destination = session.isAdmin && isWriteRoute ? requestedReturn : '#/';
-      location.href = `notice.html${destination}`;
+      const qnaDestination = /^qna\.html#\/(write|edit\/[^/?#]+)$/.test(requestedReturn);
+      const destination = qnaDestination
+        ? `qna.html${requestedReturn.slice('qna.html'.length)}`
+        : `notice.html${session.isAdmin && isWriteRoute ? requestedReturn : '#/'}`;
+      location.href = destination;
     } catch (error) {
       errorEl.textContent = errorMessage(error);
       errorEl.hidden = false;

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What If Q&A 게시판에서 질문하고 답변을 확인하세요.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Q&amp;A | What If</title>
+  <link rel="stylesheet" href="css/base/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/notice.css">
+  <link rel="stylesheet" href="css/qna.css">
+  <script type="module" src="js/modules/site-chrome.js"></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/qna/app.js"></script>
+</head>
+
+<body data-page="qna">
+  <a class="skip-link" href="#qna-view">본문 바로가기</a>
+  <div data-site-header-slot></div>
+
+  <main id="contents" class="notice-main">
+    <div class="notice-hero">
+      <div class="notice-account" data-auth-bar aria-live="polite">
+        <p class="notice-account__message" data-qna-auth-message>로그인 상태를 확인하고 있습니다.</p>
+        <a class="notice-btn notice-btn--ghost notice-btn--sm" href="login.html" data-qna-login hidden>로그인</a>
+        <button class="notice-btn notice-btn--ghost notice-btn--sm" type="button" data-qna-logout hidden>로그아웃</button>
+      </div>
+      <h1 id="qna-title" lang="en">Q&amp;A</h1>
+      <p id="qna-subtitle">궁금한 점을 질문하고 답변을 확인하세요.</p>
+    </div>
+    <div class="notice-wrap" id="qna-view" tabindex="-1"></div>
+  </main>
+
+  <div data-site-footer-slot></div>
+</body>
+
+</html>
