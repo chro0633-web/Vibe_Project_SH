@@ -1,6 +1,6 @@
 /**
  * Projects Subpage Category Filter Module
- * - 카테고리 필터링 (All, Product, Mobility, Spatial, Interaction)
+ * - 카테고리 필터링 (All, Graphic, AI, Branding, etc.)
  * - 현재 선택된 메뉴 밑줄 및 활성 상태(aria-pressed) 동기화
  * - 선택된 카테고리에 맞는 썸네일 카드 노출/숨김
  */
@@ -26,8 +26,10 @@ export function initProjectsFilter() {
 
       // 2) 카드 필터링
       projectCards.forEach((card) => {
-        const cardCategory = card.getAttribute('data-category');
-        const matches = selectedCategory === 'All' || cardCategory === selectedCategory;
+        const cardCategories = (card.getAttribute('data-category') || '')
+          .split(',')
+          .map((category) => category.trim());
+        const matches = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
 
         if (matches) {
           card.classList.remove('is-hidden');
@@ -40,4 +42,3 @@ export function initProjectsFilter() {
     });
   });
 }
-

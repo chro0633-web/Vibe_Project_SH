@@ -13,23 +13,22 @@ const description =
   'This project explores new possibilities in design by rethinking familiar experiences from a fresh perspective. Through thoughtful forms, emerging technologies, and human-centered research, it considers how small changes in everyday life can create more meaningful connections.';
 const additionalDescription = 'Detailed project information will be added soon.';
 const closeDuration = 650;
-const modalImageSrc = 'images/test-img.png';
 
-/* 이미지를 미리 받아 디코딩해 두면 모달이 올라오는 동안 메인 스레드가 막히지 않는다. */
-const preloadModalImage = () => {
-  const preload = new Image();
-  preload.decoding = 'async';
-  preload.src = modalImageSrc;
-  return preload.decode ? preload.decode().catch(() => {}) : Promise.resolve();
-};
+export async function initProjectsModal() {
 
-export function initProjectsModal() {
   const cards = document.querySelectorAll(selectors.cards);
   const dialog = document.querySelector(selectors.dialog);
 
   if (!cards.length || !(dialog instanceof HTMLDialogElement)) {
     return;
   }
+
+  const projectsResponse = await fetch(new URL('../../data/projects.json', import.meta.url));
+  if (!projectsResponse.ok) {
+    throw new Error(`프로젝트 데이터를 불러오지 못했습니다: ${projectsResponse.status}`);
+  }
+  const projects = await projectsResponse.json();
+  const projectsById = new Map(projects.map((project) => [String(project.id), project]));
 
   const closeButton = dialog.querySelector(selectors.close);
   const image = dialog.querySelector(selectors.image);
@@ -81,8 +80,6 @@ export function initProjectsModal() {
     }
   };
 
-  preloadModalImage();
-
   dialog.addEventListener('wheel', blockBackgroundScroll, { passive: false });
   dialog.addEventListener('touchmove', blockBackgroundScroll, { passive: false });
   window.addEventListener('scroll', keepPageScrollPosition, { passive: true });
@@ -117,9 +114,10 @@ export function initProjectsModal() {
       return;
     }
 
-    const projectTitle = card.querySelector('.project-card__title')?.textContent?.trim();
-    const category = card.querySelector('.project-card__category')?.textContent?.trim();
-    const author = card.querySelector('.project-card__name')?.textContent?.trim();
+    const project = projectsById.get(card.dataset.projectId);
+    const projectTitle = project?.title || card.querySelector('.project-card__title')?.textContent?.trim();
+    const category = project?.category || card.querySelector('.project-card__category')?.textContent?.trim();
+    const author = project?.author || card.querySelector('.project-card__name')?.textContent?.trim();
     const thumbnail = card.querySelector('.project-card__thumb img');
 
     if (!projectTitle || !thumbnail) {
@@ -128,16 +126,26 @@ export function initProjectsModal() {
 
     activeCard = card;
     isOpening = true;
-    image.src = modalImageSrc;
+    image.src = project?.detailImages?.[0] || project?.thumbnail || thumbnail.src;
     image.alt = projectTitle;
     title.textContent = projectTitle;
     subtitle.textContent = [category, author].filter(Boolean).join(' · ');
     body.replaceChildren();
 
-    [description, additionalDescription].forEach((text) => {
+    const projectDescription = project?.description || description;
+    const paragraphs = project ? [projectDescription] : [description, additionalDescription];
+    paragraphs.forEach((text) => {
       const paragraph = document.createElement('p');
       paragraph.textContent = text;
       body.append(paragraph);
+    });
+
+    project?.detailImages?.slice(1).forEach((src, index) => {
+      const detailImage = document.createElement('img');
+      detailImage.src = src;
+      detailImage.alt = `${projectTitle} 상세 이미지 ${index + 2}`;
+      detailImage.loading = 'lazy';
+      body.append(detailImage);
     });
 
     /* 이미지 디코딩이 끝난 뒤에 애니메이션을 시작한다 (최대 300ms 대기). */

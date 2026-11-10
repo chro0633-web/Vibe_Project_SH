@@ -46,7 +46,7 @@ if (activeItem) {
 }
 
 if (searchTagList) {
-  searchTagList.replaceChildren(...['GRAPHIC', 'AI', 'VIBE CODING', 'BX', 'etc.'].map((tag) => {
+  searchTagList.replaceChildren(...['All', 'Graphic', 'AI', 'Branding', 'etc.'].map((tag) => {
     const item = document.createElement('li');
     item.textContent = `#${tag}`;
     return item;

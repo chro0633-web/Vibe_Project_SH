@@ -1685,8 +1685,7 @@
   padding-right: 5px;
 }
 
-.project-modal__image,
-.project-modal__placeholder {
+.project-modal__image {
   display: block;
   inline-size: 100%;
   aspect-ratio: 16 / 9;
@@ -1706,28 +1705,33 @@
   font-size: clamp(1.5rem, 4vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
+  color: #ffffff;
 }
 
 .project-modal__subtitle {
   margin-block-start: 0.75rem;
-  color: var(--color-text-meta);
+  color: #c3c3c3;
   font-family: var(--font-en);
   font-size: 0.9375rem;
 }
 
 .project-modal__body {
-  max-inline-size: 48rem;
+  inline-size: 100%;
   margin-block-start: clamp(1.5rem, 4vw, 2.5rem);
   font-size: var(--fs-body);
   line-height: var(--line-body);
+  color: #ffffff;
 }
 
 .project-modal__body p + p {
   margin-block-start: 1rem;
 }
 
-.project-modal__placeholder {
-  background: #d8dce8;
+.project-modal__body img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  margin-block-start: 1rem;
 }
 
 @media (max-width: 812px) {

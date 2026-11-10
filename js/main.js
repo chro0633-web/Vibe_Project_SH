@@ -4,7 +4,9 @@ import { initProjectsModal } from './modules/projects-modal.js';
 
 initProjectsSlider();
 initProjectsFilter();
-initProjectsModal();
+initProjectsModal().catch((error) => {
+  console.error('프로젝트 모달 초기화에 실패했습니다.', error);
+});
 
 
 
