@@ -1114,6 +1114,17 @@
   cursor: default;
 }
 
+.projects-slider__item > a {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.projects-slider__item > a:focus-visible {
+  outline: 3px solid var(--color-white);
+  outline-offset: -3px;
+}
+
 .projects-slider__item img {
   inline-size: 100%;
   block-size: 100%;

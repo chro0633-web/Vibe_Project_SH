@@ -213,4 +213,10 @@ export async function initProjectsModal() {
       closeModal();
     }
   });
+
+  const requestedProjectId = new URLSearchParams(window.location.search).get('project');
+  const requestedCard = [...cards].find((card) => card.dataset.projectId === requestedProjectId);
+  if (requestedCard) {
+    openModal(requestedCard);
+  }
 }

@@ -30,7 +30,7 @@ export function initProjectsSlider(root = document.querySelector(SELECTORS.root)
     return;
   }
 
-  // 앞뒤로 클론 복제하여 완벽한 무한 루프 구성 (앞 6개 + 원본 6개 + 뒤 6개 = 18개)
+  // 앞뒤로 원본 아이템을 복제하여 무한 루프를 구성한다.
   const prevClones = originalItems.map((item) => {
     const clone = item.cloneNode(true);
     clone.classList.add('is-clone');
@@ -145,6 +145,9 @@ export function initProjectsSlider(root = document.querySelector(SELECTORS.root)
   // 클릭 인터랙션: 비활성 카드를 클릭하면 해당 카드가 가운데로 오도록 이동
   track.addEventListener('click', (event) => {
     if (hasMoved) {
+      event.preventDefault();
+      event.stopPropagation();
+      hasMoved = false;
       return;
     }
 
@@ -280,4 +283,3 @@ export function initProjectsSlider(root = document.querySelector(SELECTORS.root)
     startAutoPlay();
   });
 }
-
