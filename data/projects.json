@@ -13,66 +13,40 @@
     ]
   },
   {
-    "id": 11,
-    "title": "Mercedes Vision NEURO Submerssive Luxury",
-    "author": "Haesol Ma",
-    "category": "Mobility",
-    "thumbnail": "path/to/img11.jpg"
+    "id": 2,
+    "title": "STAU",
+    "category": "Graphic, AI",
+    "thumbnail": "images/thumb_stau.png",
+    "description": "가상화폐 해외 투자자를 대상으로 홍보 및 알림을 위한 이미지 디자인입니다. 직접 디자인 또는 AI 활용을 통해 제작했습니다.",
+    "detailImages": [
+      "images/STAU-1.png",
+      "images/STAU-2.png",
+      "images/STAU-3.png"
+    ]
   },
   {
-    "id": 12,
-    "title": "SOUZ Korean Wellness Retreat",
-    "author": "Jagyeong Kim, Hanbom Jang",
-    "category": "Spatial",
-    "thumbnail": "path/to/img12.jpg"
+    "id": 3,
+    "title": "WAVVE",
+    "category": "Graphic",
+    "thumbnail": "images/thumb_콘텐츠-웨이브.png",
+    "description": "국내 OTT 서비스에 노출될 썸네일 및 스틸컷 제작 작업입니다. 이미지 제작 외에도 로고 추출, 파일 관리, 작업 내역 공유 등 다양한 업무를 수행했습니다.",
+    "detailImages": [
+      "images/콘텐츠-웨이브-1.png",
+      "images/콘텐츠-웨이브-2.png"
+    ]
   },
   {
-    "id": 13,
-    "title": "bollo Active-Aging XR Platform",
-    "author": "Minseo Kang, Yoonjung Jang",
-    "category": "Interaction",
-    "thumbnail": "path/to/img13.jpg"
-  },
-  {
-    "id": 14,
-    "title": "EDEN AI Home Ecosystem",
-    "author": "Dohyun Park, Seokhyun Ahn",
-    "category": "Product",
-    "thumbnail": "path/to/img14.jpg"
-  },
-  {
-    "id": 15,
-    "title": "MINI PLAYGROUND Playful Interactive Mobility",
-    "author": "Yoonpyo Hong",
-    "category": "Mobility",
-    "thumbnail": "path/to/img15.jpg"
-  },
-  {
-    "id": 16,
-    "title": "ROOT Future Camping Solution",
-    "author": "El jyidi Chaimae, Sion Lee, Wonjeong Park",
-    "category": "Product",
-    "thumbnail": "path/to/img16.jpg"
-  },
-  {
-    "id": 17,
-    "title": "bubblin' Seoul Hangout AR Service",
-    "author": "Hyunmin Kim",
-    "category": "Interaction",
-    "thumbnail": "path/to/img17.jpg"
-  },
-  {
-    "id": 18,
-    "title": "tonttu.U the echo remains",
-    "author": "Minsol Kim",
-    "category": "Product",
-    "thumbnail": "path/to/img18.jpg"
-  },
-  {
-    "id": 19,
-    "title": "Lunaris Overcoming weightlessness",
-    "author": "Jaewoong Lee, Junhong Yang",
-    "category": "Product",
-    "thumbnail": "path/to/img19.jpg"
+    "id": 4,
+    "title": "etc.",
+    "category": "Graphic, Branding, etc.",
+    "thumbnail": "images/thumb_etc.png",
+    "description": "다양한 단기 작업 목록입니다. 마케팅 디자인, 브랜딩, 촬영 등 다양한 작업 결과를 확인 하실 수 있습니다.",
+    "detailImages": [
+      "images/세이지먼트-1.png",
+      "images/기타-1.png",
+      "images/기타-2.png",
+      "images/기타-3.png"
+    ]
   }
+   
 ]

@@ -13,32 +13,34 @@ export function initProjectsFilter() {
     return;
   }
 
+  const applyFilter = (selectedCategory) => {
+    filterButtons.forEach((button) => {
+      const isActive = button.getAttribute('data-filter') === selectedCategory;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    projectCards.forEach((card) => {
+      const cardCategories = (card.getAttribute('data-category') || '')
+        .split(',')
+        .map((category) => category.trim());
+      const matches = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
+
+      card.classList.toggle('is-hidden', !matches);
+      card.toggleAttribute('hidden', !matches);
+    });
+  };
+
   filterButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const selectedCategory = btn.getAttribute('data-filter');
-
-      // 1) 버튼 활성 상태 갱신
-      filterButtons.forEach((b) => {
-        const isActive = b === btn;
-        b.classList.toggle('is-active', isActive);
-        b.setAttribute('aria-pressed', String(isActive));
-      });
-
-      // 2) 카드 필터링
-      projectCards.forEach((card) => {
-        const cardCategories = (card.getAttribute('data-category') || '')
-          .split(',')
-          .map((category) => category.trim());
-        const matches = selectedCategory === 'All' || cardCategories.includes(selectedCategory);
-
-        if (matches) {
-          card.classList.remove('is-hidden');
-          card.removeAttribute('hidden');
-        } else {
-          card.classList.add('is-hidden');
-          card.setAttribute('hidden', '');
-        }
-      });
+      if (selectedCategory) applyFilter(selectedCategory);
     });
   });
+
+  const requestedCategory = new URLSearchParams(window.location.search).get('category');
+  const requestedButton = [...filterButtons].find(
+    (button) => button.getAttribute('data-filter') === requestedCategory,
+  );
+  requestedButton?.click();
 }

@@ -46,9 +46,25 @@ if (activeItem) {
 }
 
 if (searchTagList) {
-  searchTagList.replaceChildren(...['All', 'Graphic', 'AI', 'Branding', 'etc.'].map((tag) => {
+  const projectsResponse = await fetch(new URL('../../data/projects.json', import.meta.url));
+  if (!projectsResponse.ok) {
+    throw new Error(`프로젝트 데이터를 불러오지 못했습니다: ${projectsResponse.status}`);
+  }
+  const projects = await projectsResponse.json();
+  const categories = [
+    'All',
+    ...new Set(projects.flatMap((project) => project.category.split(',').map((category) => category.trim()))),
+  ];
+  const projectsUrl = new URL('../../projects.html', import.meta.url);
+
+  searchTagList.replaceChildren(...categories.map((tag) => {
     const item = document.createElement('li');
-    item.textContent = `#${tag}`;
+    const link = document.createElement('a');
+    const destination = new URL(projectsUrl);
+    destination.searchParams.set('category', tag);
+    link.href = destination.href;
+    link.textContent = `#${tag}`;
+    item.append(link);
     return item;
   }));
 }
